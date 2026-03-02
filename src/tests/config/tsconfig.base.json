@@ -1,0 +1,7 @@
+// src/tests/config/tsconfig.base.json
+{
+  "extends": "../../../tsconfig.spec.json",
+  "compilerOptions": {
+    "baseUrl": "../../../"
+  }
+}
