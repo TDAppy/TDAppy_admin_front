@@ -7,11 +7,14 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:unit": "ng test --watch=false",
+    "test:integration": "ng test --configuration integration --watch=false",
+    "cypress:open": "cypress open --config-file src/tests/config/cypress.config.ts",
+    "cypress:ci": "cypress run --config-file src/tests/config/cypress.config.ts",
     "lint": "ng lint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
-    "test:unit": "ng test --watch=false",
     "doc": "node -e \"require('os').platform() === 'win32' ? require('child_process').execSync('start http://127.0.0.1:8080') : require('child_process').execSync('open http://127.0.0.1:8080')\" && compodoc -p tsconfig.doc.json -s"
   },
   "prettier": {
@@ -46,6 +49,7 @@
     "@eslint/js": "^9.39.3",
     "@tailwindcss/postcss": "^4.1.12",
     "angular-eslint": "21.2.0",
+    "cypress": "^15.11.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
