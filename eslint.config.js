@@ -7,7 +7,7 @@ const eslintConfigPrettier = require("eslint-config-prettier");
 
 module.exports = defineConfig([
   {
-    files: ["**/*.ts"],
+    files: ["**/*.ts", "documentation/**"],
     extends: [
       eslint.configs.recommended,
       tseslint.configs.recommended,
