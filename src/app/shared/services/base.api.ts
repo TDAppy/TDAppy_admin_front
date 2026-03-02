@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import {environment} from '../../../environments/environment';
-import {CookieService} from '@/shared/services/cookie-service';
-import {ErrorService} from '@/core/services/error.service';
+import { environment } from '../../../environments/environment';
+import { CookieService } from '@/shared/services/cookie-service';
+import { ErrorService } from '@/core/services/error.service';
 
 @Injectable()
 export abstract class BaseApi {

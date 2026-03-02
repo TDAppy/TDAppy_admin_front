@@ -101,7 +101,27 @@
           "defaultConfiguration": "development"
         },
         "test": {
-          "builder": "@angular/build:unit-test"
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "src/tests/config/tsconfig.unit.spec.json",
+            "karmaConfig": "src/tests/config/karma.unit.conf.js",
+            "exclude": ["src/tests/integration/**/*.spec.ts"],
+            "inlineStyleLanguage": "css",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": ["src/styles.css"]
+          },
+          "configurations": {
+            "integration": {
+              "tsConfig": "src/tests/config/tsconfig.integration.spec.json",
+              "karmaConfig": "src/tests/config/karma.integration.conf.js",
+              "exclude": ["src/tests/unit/**/*.spec.ts"]
+            }
+          }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
