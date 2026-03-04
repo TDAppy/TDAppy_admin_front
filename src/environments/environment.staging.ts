@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   name: 'staging',
-  apiUrl: 'https://staging-api.tdappy.fr',
+  apiUrl: 'https://staging-api.tdappy.fr/admin',
 };
