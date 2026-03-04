@@ -1,0 +1,24 @@
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { LoginFacade } from '@/features/authentication/services/login/login-facade';
+import { IconsModule } from '@/shared/icons/icons.module';
+
+@Component({
+  selector: 'app-aside',
+  imports: [RouterLinkActive, RouterLink, IconsModule],
+  templateUrl: './aside.html',
+  styleUrl: './aside.css',
+})
+export class Aside {
+  private _logFacade = inject(LoginFacade);
+
+  onLogout(): void {
+    this._logFacade.logout();
+  }
+
+  isCollapsed = false;
+
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
+}
