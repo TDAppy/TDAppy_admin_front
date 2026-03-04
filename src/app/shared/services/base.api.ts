@@ -2,7 +2,6 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { CookieService } from '@/shared/services/cookie-service';
 import { ErrorService } from '@/core/services/error.service';
 import { LoginStore } from '@/features/authentication/services/login/login-store';
 
