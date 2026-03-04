@@ -10,9 +10,9 @@ import { Aside } from '@/core/components/aside/aside/aside';
 })
 export class App {
   protected readonly title = signal('TDAppy_admin_front');
-  private router = inject(Router);
+  private _router = inject(Router);
 
-  isLoginPage():boolean {
-    return this.router.url === '/';
+  isLoginPage(): boolean {
+    return this._router.url === '/';
   }
 }

@@ -8,7 +8,7 @@ import { LoginRequest, LoginResponse } from '@/features/authentication/models/lo
 export class LoginApi extends BaseApi {
   private readonly _url = '/auth/login';
 
-  async login(payload: LoginRequest): Promise<LoginResponse>{
+  async login(payload: LoginRequest): Promise<LoginResponse> {
     return this.post<LoginResponse>(this._url, payload);
   }
 }

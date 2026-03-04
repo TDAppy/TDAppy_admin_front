@@ -11,14 +11,13 @@ import { IconsModule } from '@/shared/icons/icons.module';
 })
 export class Aside {
   private _logFacade = inject(LoginFacade);
+  isCollapsed: boolean = false;
 
   onLogout(): void {
     this._logFacade.logout();
   }
 
-  isCollapsed = false;
-
-  toggleSidebar() {
+  toggleSidebar(): void {
     this.isCollapsed = !this.isCollapsed;
   }
 }

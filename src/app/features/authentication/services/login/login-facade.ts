@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
 export class LoginFacade {
   private readonly _store = inject(LoginStore);
   private readonly _api = inject(LoginApi);
-  private readonly router = inject(Router)
+  private readonly _router = inject(Router);
 
   readonly isLoading = this._store.isLoading;
   readonly error = this._store.error;
 
-  async login(credentials:LoginRequest): Promise<boolean> {
+  async login(credentials: LoginRequest): Promise<boolean> {
     this._store.setLoading(true);
     this._store.setError(null);
 
@@ -25,7 +25,7 @@ export class LoginFacade {
       localStorage.setItem('auth_token', response.token);
       return true;
     } catch {
-      this._store.setError("Identifiant ou mot de passe incorrect");
+      this._store.setError('Identifiant ou mot de passe incorrect');
       return false;
     } finally {
       this._store.setLoading(false);
@@ -35,6 +35,6 @@ export class LoginFacade {
   logout(): void {
     this._store.setToken(null);
     localStorage.removeItem('auth_token');
-    this.router.navigate(['/']);
+    this._router.navigate(['/']);
   }
 }
