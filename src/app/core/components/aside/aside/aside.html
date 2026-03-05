@@ -4,62 +4,22 @@
 
     <div class="menu">
       <ul class="tabs">
-        <li class="tab" routerLinkActive="parent-active">
-          <span>Signalements</span>
-          <ul class="under-tabs">
-            <li class="under-tab">
-              <a routerLink="/reports/users" routerLinkActive="active">Utilisateurs signalés</a>
-            </li>
-            <li class="under-tab">
-              <a routerLink="/reports/topics" routerLinkActive="active">Topics signalés</a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="tab" routerLinkActive="parent-active">
-          <span>Utilisateurs</span>
-          <ul class="under-tabs">
-            <li class="under-tab">
-              <a routerLink="/users/list" routerLinkActive="active">Liste des utilisateurs</a>
-            </li>
-            <li class="under-tab">
-              <a routerLink="/users/banned" routerLinkActive="active">Utilisateurs bannis</a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="tab" routerLinkActive="parent-active">
-          <span>Forums</span>
-          <ul class="under-tabs">
-            <li class="under-tab">
-              <a routerLink="/forums/topics" routerLinkActive="active">Liste des topics</a>
-            </li>
-            <li class="under-tab">
-              <a routerLink="/forums/deactivate" routerLinkActive="active">Topics désactivés</a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="tab" routerLinkActive="parent-active">
-          <span>Contenus</span>
-          <ul class="under-tabs">
-            <li class="under-tab">
-              <a routerLink="/content/resources" routerLinkActive="active">Ressources</a>
-            </li>
-            <li class="under-tab">
-              <a routerLink="/content/products" routerLinkActive="active">Produits affiliés</a>
-            </li>
-            <li class="under-tab">
-              <a routerLink="/content/promotional-codes" routerLinkActive="active"
-                >Codes promotionnels</a
-              >
-            </li>
-          </ul>
-        </li>
-
-        <li class="tab" routerLinkActive="parent-active">
-          <a routerLink="/statistics" routerLinkActive="active">Statistiques</a>
-        </li>
+        @for (item of menuItems; track item.label) {
+          <li class="tab" routerLinkActive="parent-active">
+            @if (item.children.length === 0) {
+              <a [routerLink]="item.children" routerLinkActive="active">{{ item.label }}</a>
+            } @else {
+              <span>{{ item.label }}</span>
+              <ul class="under-tabs">
+                @for (child of item.children; track child.label) {
+                  <li class="under-tab">
+                    <a [routerLink]="child.route" routerLinkActive="active">{{ child.label }}</a>
+                  </li>
+                }
+              </ul>
+            }
+          </li>
+        }
       </ul>
     </div>
 
