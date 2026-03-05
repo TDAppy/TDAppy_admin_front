@@ -1,12 +1,11 @@
 h1 {
-
   width: max-content;
 }
 
 .cards-grid {
   display: flex;
   flex-wrap: wrap;
-  margin : 5rem;
+  margin: 5rem;
   justify-content: center;
   align-items: center;
   gap: 1.5rem;

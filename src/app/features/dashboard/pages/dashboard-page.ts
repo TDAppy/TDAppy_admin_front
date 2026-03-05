@@ -6,12 +6,12 @@ import { DashboardContent } from '@/features/dashboard/components/dashboard-cont
   imports: [DashboardContent],
   template: ` <app-dashboard-content></app-dashboard-content> `,
   styles: `
-  app-dashboard-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+    app-dashboard-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   `,
 })
 export class DashboardPage {}
