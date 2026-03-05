@@ -1,12 +1,12 @@
 <div class="table-wrapper">
   <table>
     <thead>
-    <tr>
-      @for (col of columns(); track col.key) {
-        <th>{{ col.label }}</th>
-      }
-      <th class="th-actions"></th>
-    </tr>
+      <tr>
+        @for (col of columns(); track col.key) {
+          <th>{{ col.label }}</th>
+        }
+        <th class="th-actions"></th>
+      </tr>
     </thead>
     <tbody>
       @if (data().length === 0) {
