@@ -6,7 +6,7 @@ import { computed, Injectable, signal } from '@angular/core';
 export class LoginStore {
   private _isLoading = signal<boolean>(false);
   private _error = signal<string | null>(null);
-  private _token = signal<string | null>(null);
+  private _token = signal<string | null>(localStorage.getItem('auth_token'));
 
   readonly isLoading = this._isLoading.asReadonly();
   readonly error = this._error.asReadonly();
@@ -25,6 +25,6 @@ export class LoginStore {
   }
 
   getToken(): string | null {
-    return this._token();
+    return this._token() ?? localStorage.getItem('auth_token');
   }
 }

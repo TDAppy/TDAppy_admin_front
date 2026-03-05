@@ -8,7 +8,6 @@ import { ForumListContent } from '@/features/forums/components/forum-list-conten
   styles: `
     :host {
       flex: 1;
-      padding: 2rem;
       height: 100%;
       margin-top: 5rem;
     }
