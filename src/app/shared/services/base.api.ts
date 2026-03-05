@@ -2,18 +2,18 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { CookieService } from '@/shared/services/cookie-service';
 import { ErrorService } from '@/core/services/error.service';
+import { LoginStore } from '@/features/authentication/services/login/login-store';
 
 @Injectable()
 export abstract class BaseApi {
   protected http = inject(HttpClient);
   protected readonly BASE_URL = environment.apiUrl;
   private _errorService = inject(ErrorService);
-  private readonly _cookieService = inject(CookieService);
+  private readonly _loginStore = inject(LoginStore);
 
   protected getHeaders(): HttpHeaders {
-    const token = this._cookieService.get('auth_token');
+    const token = this._loginStore.getToken();
     return new HttpHeaders({
       'Content-Type': 'application/json',
       ...(token ? { Authorization: `Bearer ${token}` } : {}),

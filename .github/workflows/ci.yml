@@ -96,7 +96,7 @@ jobs:
       - name: Start angular server
         run: npm run start &
       - name: Wait for server
-        run: npx wait-on http://localhost:4200
+        run: npx wait-on http://localhost:4201
       - name: Run Cypress E2E tests
         run: npm run cypress:ci
 

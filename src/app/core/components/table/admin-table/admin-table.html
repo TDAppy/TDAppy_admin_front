@@ -1,0 +1,28 @@
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        @for (col of columns(); track col.key) {
+          <th>{{ col.label }}</th>
+        }
+        <th class="th-actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (data().length === 0) {
+        <tr>
+          <td [attr.colspan]="columns().length + 1" class="empty">Aucun résultat.</td>
+        </tr>
+      } @else {
+        @for (row of data(); track $index; let i = $index) {
+          <tr [class.row-even]="i % 2 === 1">
+            @for (col of columns(); track col.key) {
+              <td>{{ row[col.key] ?? '—' }}</td>
+            }
+            <td class="td-actions">⋮</td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

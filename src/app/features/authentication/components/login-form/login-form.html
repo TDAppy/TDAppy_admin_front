@@ -1,0 +1,55 @@
+<h1>Connexion</h1>
+<p>Connectez-vous pour accéder au panel admin de TDAppy</p>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="input-group">
+    <label for="identifier" class="content-label">
+      <p>Identifiant *</p>
+      <lucide-icon name="User"></lucide-icon>
+    </label>
+    <input
+      type="text"
+      placeholder="E-mail ou nom d'utilisateur"
+      id="identifier"
+      formControlName="identifier"
+      required
+    />
+    @if (loginForm.get('identifier')?.touched && loginForm.get('identifier')?.errors) {
+      <div id="identifier-error" class="error-message">
+        L'identifiant ou l'email est obligatoire
+      </div>
+    }
+  </div>
+
+  <div class="input-group">
+    <label for="password" class="content-label">
+      <p>Mot de passe *</p>
+      <lucide-icon name="KeyRound"></lucide-icon>
+    </label>
+    <div class="password-wrapper">
+      <input
+        id="password"
+        [type]="showPassword ? 'text' : 'password'"
+        formControlName="password"
+        required
+      />
+      <button type="button" class="password-toggle" (click)="togglePasswordVisibility()">
+        <lucide-icon [name]="showPassword ? 'eye-off' : 'eye'"></lucide-icon>
+      </button>
+    </div>
+    @if (loginForm.get('password')?.touched && loginForm.get('password')?.errors) {
+      <div id="password-error" class="error-message">Le mot de passe est obligatoire</div>
+    }
+  </div>
+
+  <button type="submit" class="submit-button">
+    <span>Se connecter</span>
+    <img src="/assets/auth/unlock-icon.png" alt="lock icon" />
+  </button>
+
+  @if (error()) {
+    <div class="error-banner" role="alert">
+      {{ error() }}
+    </div>
+  }
+</form>
