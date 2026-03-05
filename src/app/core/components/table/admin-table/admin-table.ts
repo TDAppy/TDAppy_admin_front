@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { TableColumn } from '@/core/models/table-column.model';
 
 @Component({
   selector: 'app-admin-table',
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
   templateUrl: './admin-table.html',
   styleUrl: './admin-table.css',
 })
-export class AdminTable {}
+export class AdminTable {
+  columns = input.required<TableColumn[]>();
+  data = input.required<any[]>();
+}

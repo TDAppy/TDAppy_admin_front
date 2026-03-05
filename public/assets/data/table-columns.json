@@ -1,0 +1,45 @@
+{
+  "reportsUsers": [
+    { "key": "username", "label": "Pseudo" },
+    { "key": "reason", "label": "Raisons" },
+    { "key": "reportedMessage", "label": "Message signalé" },
+    { "key": "reportedAt", "label": "Date de signalement" }
+  ],
+  "reportsTopics": [
+    { "key": "topicTitle", "label": "Titre du topic" },
+    { "key": "authorUsername", "label": "Pseudo de l'auteur" },
+    { "key": "reason", "label": "Raisons" },
+    { "key": "reportedAt", "label": "Date de signalement" }
+  ],
+  "usersList": [
+    { "key": "id", "label": "Id" },
+    { "key": "username", "label": "Pseudo" },
+    { "key": "createdAt", "label": "Date création compte" },
+    { "key": "status", "label": "Etat du compte" }
+  ],
+  "usersBanned": [
+    { "key": "id", "label": "Id" },
+    { "key": "username", "label": "Pseudo" },
+    { "key": "banDuration", "label": "Durée de banissement" },
+    { "key": "banDates", "label": "Dates de banissement" }
+  ],
+  "forumsList": [
+    { "key": "id", "label": "Id" },
+    { "key": "topicTitle", "label": "Titre du topic" },
+    { "key": "authorUsername", "label": "Pseudo de l'auteur" },
+    { "key": "createdAt", "label": "Date création du topic" },
+    { "key": "status", "label": "Etat du topic" }
+  ],
+  "forumsDeactivated": [
+    { "key": "id", "label": "Id" },
+    { "key": "topicTitle", "label": "Titre du topic" },
+    { "key": "authorUsername", "label": "Pseudo du créateur" }
+  ],
+  "contentResources": [
+    { "key": "id", "label": "Id" },
+    { "key": "image", "label": "Image" },
+    { "key": "title", "label": "Titre" },
+    { "key": "publishedAt", "label": "Date de mise en ligne" },
+    { "key": "theme", "label": "Thème" }
+  ]
+}

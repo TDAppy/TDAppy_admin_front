@@ -16,8 +16,8 @@
   {
     "label": "Forums",
     "children": [
-      { "label": "Liste des topics", "route": "/forums/topics" },
-      { "label": "Topics désactivés", "route": "/forums/deactivate" }
+      { "label": "Liste des topics", "route": "/forums/list" },
+      { "label": "Topics désactivés", "route": "/forums/deactivated" }
     ]
   },
   {
