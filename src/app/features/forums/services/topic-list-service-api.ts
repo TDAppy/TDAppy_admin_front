@@ -5,10 +5,10 @@ import { TopicModel } from '@/features/forums/models/topic.model';
 @Injectable({
   providedIn: 'root',
 })
-export class TopicListServiceApi extends BaseApi{
+export class TopicListServiceApi extends BaseApi {
   private readonly _url = '/topic';
 
-  async getAllTopics():Promise<TopicModel[]> {
+  async getAllTopics(): Promise<TopicModel[]> {
     const response = await this.get<any[]>(this._url);
 
     return response.map((item) => ({

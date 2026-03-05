@@ -3,4 +3,4 @@ export type TopicModel = {
   topicTitle: string;
   authorUsername: string;
   createdAt: string;
-}
+};

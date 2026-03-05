@@ -5,10 +5,10 @@ import { UserModel } from '@/features/users/models/user.model';
 @Injectable({
   providedIn: 'root',
 })
-export class UserListServiceApi extends BaseApi{
+export class UserListServiceApi extends BaseApi {
   private readonly _url = '/user';
 
-  async getAllUsers():Promise<UserModel[]> {
+  async getAllUsers(): Promise<UserModel[]> {
     const response = await this.get<any[]>(this._url);
 
     return response.map((item) => ({
