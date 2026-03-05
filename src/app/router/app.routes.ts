@@ -23,8 +23,8 @@ export const routes: Routes = [
   {
     path: 'forums',
     children: [
-      { path: 'topics', component: DashboardPage },
-      { path: 'deactivate', component: DashboardPage },
+      { path: 'list', component: DashboardPage },
+      { path: 'deactivated', component: DashboardPage },
     ],
   },
   {

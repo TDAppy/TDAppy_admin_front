@@ -1,0 +1,6 @@
+<h1>Espace Admin</h1>
+<div class="cards-grid">
+  @for (item of menuItems; track item.label) {
+    <app-dashboard-card [item]="item"></app-dashboard-card>
+  }
+</div>

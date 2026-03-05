@@ -1,0 +1,35 @@
+[
+  {
+    "label": "Signalements",
+    "children": [
+      { "label": "Utilisateurs signalés", "route": "/reports/users" },
+      { "label": "Topics signalés", "route": "/reports/topics" }
+    ]
+  },
+  {
+    "label": "Utilisateurs",
+    "children": [
+      { "label": "Liste des utilisateurs", "route": "/users/list" },
+      { "label": "Utilisateurs bannis", "route": "/users/banned" }
+    ]
+  },
+  {
+    "label": "Forums",
+    "children": [
+      { "label": "Liste des topics", "route": "/forums/topics" },
+      { "label": "Topics désactivés", "route": "/forums/deactivate" }
+    ]
+  },
+  {
+    "label": "Contenus",
+    "children": [
+      { "label": "Ressources", "route": "/content/resources" },
+      { "label": "Produits affiliés", "route": "/content/products" },
+      { "label": "Codes promotionnels", "route": "/content/promotional-codes" }
+    ]
+  },
+  {
+    "label": "Statistiques",
+    "children": [{ "label": "Voir les statistiques", "route": "/statistics" }]
+  }
+]

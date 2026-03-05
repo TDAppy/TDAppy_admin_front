@@ -1,0 +1,19 @@
+h1 {
+
+  width: max-content;
+}
+
+.cards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin : 5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

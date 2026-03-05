@@ -1,7 +1,7 @@
 section {
   min-width: 300px;
   max-width: 320px;
-  height: 100%;
+  min-height: 100%;
   background-color: var(--bleu-vert);
   color: white;
   display: flex;
