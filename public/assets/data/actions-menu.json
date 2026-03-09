@@ -1,0 +1,31 @@
+{
+  "reportsUsers": [
+    { "key": "removeReport", "label": "Retirer le signalement" },
+    { "key": "ban", "label": "Bannir" }
+  ],
+  "reportsTopics": [
+    { "key": "removeReport", "label": "Retirer le signalement" },
+    { "key": "deactivate", "label": "Rendre inactif" }
+  ],
+  "usersList": [
+    { "key": "ban", "label": "Bannir" },
+    { "key": "delete", "label": "Supprimer le compte" }
+  ],
+  "usersBanned": [
+    { "key": "unban", "label": "Débannir" },
+    { "key": "delete", "label": "Supprimer le compte" }
+  ],
+  "forumsList": [
+    { "key": "see", "label": "Voir le topic" },
+    { "key": "edit", "label": "Modifier" },
+    { "key": "toggleActive", "label": "Rendre actif / non actif" }
+  ],
+  "forumsDeactivated": [
+    { "key": "activate", "label": "Rendre actif" },
+    { "key": "delete", "label": "Supprimer le topic" }
+  ],
+  "contentResources": [
+    { "key": "edit", "label": "Modifier" },
+    { "key": "delete", "label": "Supprimer" }
+  ]
+}

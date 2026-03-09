@@ -19,7 +19,15 @@
             @for (col of columns(); track col.key) {
               <td>{{ row[col.key] ?? '—' }}</td>
             }
-            <td class="td-actions">⋮</td>
+            <td class="td-actions">
+              <app-actions-menu
+                [actions]="actions()"
+                [row]="row"
+                [isOpen]="openMenuIndex() === i"
+                (toggleMenu)="toggleMenu(i)"
+                (actionTrigerred)="onActionTrigerred($event)">
+              </app-actions-menu>
+            </td>
           </tr>
         }
       }

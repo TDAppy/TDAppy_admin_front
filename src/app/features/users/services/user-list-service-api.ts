@@ -14,7 +14,7 @@ export class UserListServiceApi extends BaseApi {
     return response.map((item) => ({
       id: item.id,
       username: item.username,
-      status: item.isBanned ? 'Banni' : 'Actif',
+      status: item.isDeleted ? 'Supprimé' : item.isBanned ? 'Banni' : 'Actif',
     }));
   }
 }
