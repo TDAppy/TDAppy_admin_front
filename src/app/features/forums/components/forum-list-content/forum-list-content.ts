@@ -30,7 +30,7 @@ export class ForumListContent implements OnInit {
     });
   }
 
-  async onActionTriggered(event: { key: string; row: TopicModel }):Promise<void> {
+  async onActionTriggered(event: { key: string; row: TopicModel }): Promise<void> {
     switch (event.key) {
       case 'see':
         window.open(`${environment.frontendUrl}/forum/${event.row.id}`, '_blank');
@@ -46,7 +46,7 @@ export class ForumListContent implements OnInit {
     }
   }
 
-  async onToggleStatusConfirmed():Promise<void> {
+  async onToggleStatusConfirmed(): Promise<void> {
     const topic = this.selectedTopic();
     if (!topic) return;
     await this._topicListServiceApi.changeTopicStatus(topic.id);
@@ -59,7 +59,7 @@ export class ForumListContent implements OnInit {
     this.selectedTopic.set(null);
   }
 
-  async onUpdateTopicConfirm(payload: TopicUpdateModel):Promise<void> {
+  async onUpdateTopicConfirm(payload: TopicUpdateModel): Promise<void> {
     const topic = this.selectedTopic();
     if (!topic) return;
     await this._topicListServiceApi.updateTopic(topic.id, payload);

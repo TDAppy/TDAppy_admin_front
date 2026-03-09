@@ -12,21 +12,21 @@ export class ActionsMenu {
   row = input.required<any>();
   isOpen = input.required<boolean>();
   toggleMenu = output<void>();
-  actionTrigerred = output<{key : string, row : any}>();
+  actionTrigerred = output<{ key: string; row: any }>();
 
   menuX = signal(0);
   menuY = signal(0);
 
-  openMenu(event: MouseEvent):void {
+  openMenu(event: MouseEvent): void {
     event.stopPropagation();
     this.menuX.set(event.clientX - 170);
     this.menuY.set(event.clientY);
     this.toggleMenu.emit();
   }
 
-  handleAction(key: string):void {
+  handleAction(key: string): void {
     console.log('Action:', key, 'Row:', this.row());
-    this.actionTrigerred.emit({key, row : this.row()});
+    this.actionTrigerred.emit({ key, row: this.row() });
     this.toggleMenu.emit();
   }
 }

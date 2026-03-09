@@ -31,7 +31,7 @@ export class UserListContent implements OnInit {
     });
   }
 
-  async onActionTriggered(event: { key: string; row: UserBannedModel }):Promise<void> {
+  async onActionTriggered(event: { key: string; row: UserBannedModel }): Promise<void> {
     switch (event.key) {
       case 'ban':
         this.selectedUser.set(event.row);
@@ -44,7 +44,7 @@ export class UserListContent implements OnInit {
     }
   }
 
-  async onBanConfirmed(dto: { bannedUntil: string | null }):Promise<void> {
+  async onBanConfirmed(dto: { bannedUntil: string | null }): Promise<void> {
     const user = this.selectedUser();
     if (!user) return;
     await this._userServiceApi.banUser(user.id, dto.bannedUntil ? new Date(dto.bannedUntil) : null);
@@ -55,7 +55,7 @@ export class UserListContent implements OnInit {
     this.selectedUser.set(null);
   }
 
-  async onDeleteConfirmed():Promise<void> {
+  async onDeleteConfirmed(): Promise<void> {
     const user = this.selectedUser();
     if (!user) return;
     await this._userServiceApi.deleteUser(user.id);

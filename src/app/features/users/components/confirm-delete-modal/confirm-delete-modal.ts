@@ -13,11 +13,11 @@ export class ConfirmDeleteModal {
   confirm = output<void>();
 
   @HostListener('document:keydown.escape')
-  onEscape():void {
+  onEscape(): void {
     this.closeModal.emit();
   }
 
-  onOverlayClick(event: MouseEvent):void {
+  onOverlayClick(event: MouseEvent): void {
     if (event.target === event.currentTarget) {
       this.closeModal.emit();
     }

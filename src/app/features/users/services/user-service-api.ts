@@ -4,7 +4,7 @@ import { BaseApi } from '@/shared/services/base.api';
 @Injectable({
   providedIn: 'root',
 })
-export class UserServiceApi extends BaseApi{
+export class UserServiceApi extends BaseApi {
   private readonly _url = '/user';
 
   async banUser(id: number, bannedUntil: Date | null): Promise<void> {

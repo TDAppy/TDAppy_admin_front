@@ -16,29 +16,29 @@ export class BanModal {
   bannedUntil = signal('');
 
   @HostListener('document:keydown.escape')
-  onEscape():void {
+  onEscape(): void {
     this.closeModal.emit();
   }
 
-  togglePermanent() :void{
+  togglePermanent(): void {
     this.isPermanent.set(!this.isPermanent());
     if (this.isPermanent()) this.bannedUntil.set('');
   }
 
-  onOverlayClick(event: MouseEvent):void {
+  onOverlayClick(event: MouseEvent): void {
     if (event.target === event.currentTarget) {
       this.closeModal.emit();
     }
   }
 
-  submit():void{
-    if(!this.isPermanent() && !this.bannedUntil()) {
-      this.error.set('Veuillez sélectionner une date ou cocher "Ban permanent".')
+  submit(): void {
+    if (!this.isPermanent() && !this.bannedUntil()) {
+      this.error.set('Veuillez sélectionner une date ou cocher "Ban permanent".');
       return;
     }
     this.error.set('');
     this.confirm.emit({
-      bannedUntil: this.isPermanent() ? null : this.bannedUntil()
+      bannedUntil: this.isPermanent() ? null : this.bannedUntil(),
     });
   }
 }

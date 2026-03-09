@@ -39,7 +39,7 @@ export class TopicServiceApi extends BaseApi {
     return response.map((item) => ({
       id: item.id,
       topicTitle: item.title,
-      authorUsername: item.username
+      authorUsername: item.username,
     }));
   }
 

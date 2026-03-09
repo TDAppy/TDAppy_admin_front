@@ -3,7 +3,6 @@ import tableColumns from '../../../../../../public/assets/data/table-columns.jso
 import { AdminTable } from '@/core/components/table/admin-table/admin-table';
 import tableActions from '../../../../../../public/assets/data/actions-menu.json';
 
-
 @Component({
   selector: 'app-resource-content',
   imports: [AdminTable],
@@ -11,7 +10,6 @@ import tableActions from '../../../../../../public/assets/data/actions-menu.json
   styleUrl: './resource-content.css',
 })
 export class ResourceContent {
-
   actions = tableActions.contentResources;
   columns = tableColumns.contentResources;
   data = [];

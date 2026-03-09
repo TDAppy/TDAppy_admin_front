@@ -22,11 +22,11 @@ export class UserBannedServiceApi extends BaseApi {
       }),
       bannedUntil: item.bannedUntil
         ? new Date(item.bannedUntil).toLocaleDateString('fr-FR', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-      })
-      : null,
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+          })
+        : null,
       duration: formatDuration(item.duration),
     }));
   }

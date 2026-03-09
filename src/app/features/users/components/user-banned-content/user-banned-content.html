@@ -1,7 +1,12 @@
 <h1>Liste des utilisateurs bannis</h1>
 
 <div class="admin-table-container">
-  <app-admin-table [columns]="columns" [data]="data()" [actions]="actions" (actionTrigerred)="onActionTriggered( $event)"/>
+  <app-admin-table
+    [columns]="columns"
+    [data]="data()"
+    [actions]="actions"
+    (actionTrigerred)="onActionTriggered($event)"
+  />
 </div>
 
 @if (showDeleteModal() && selectedUser()) {
@@ -9,5 +14,6 @@
     title="Supprimer l'utilisateur"
     [description]="'Voulez-vous vraiment supprimer ' + selectedUser()!.username + ' ?'"
     (close)="showDeleteModal.set(false)"
-    (confirm)="onDeleteConfirmed()" />
+    (confirm)="onDeleteConfirmed()"
+  />
 }

@@ -29,7 +29,7 @@ export class UserBannedContent implements OnInit {
     });
   }
 
-  async onActionTriggered(event: { key: string; row: UserBannedModel }):Promise<void> {
+  async onActionTriggered(event: { key: string; row: UserBannedModel }): Promise<void> {
     switch (event.key) {
       case 'unban':
         await this._userServiceApi.unban(event.row.id);
@@ -42,7 +42,7 @@ export class UserBannedContent implements OnInit {
     }
   }
 
-  async onDeleteConfirmed():Promise<void> {
+  async onDeleteConfirmed(): Promise<void> {
     const user = this.selectedUser();
     if (!user) return;
     await this._userServiceApi.deleteUser(user.id);

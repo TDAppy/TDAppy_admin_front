@@ -1,20 +1,33 @@
 <h1>Liste des forums</h1>
 
 <div class="admin-table-container">
-  <app-admin-table [columns]="columns" [data]="data()" [actions]="actions" (actionTrigerred)="onActionTriggered($event)"/>
+  <app-admin-table
+    [columns]="columns"
+    [data]="data()"
+    [actions]="actions"
+    (actionTrigerred)="onActionTriggered($event)"
+  />
 </div>
 
 @if (showToggleStatusModal() && selectedTopic()) {
   <app-confirm-delete-modal
     title="Changer le statut du topic"
-    [description]="'Voulez-vous ' + (selectedTopic()!.status === 'Actif' ? 'désactiver' : 'activer') + ' le topic ' + selectedTopic()!.topicTitle + ' ?'"
+    [description]="
+      'Voulez-vous ' +
+      (selectedTopic()!.status === 'Actif' ? 'désactiver' : 'activer') +
+      ' le topic ' +
+      selectedTopic()!.topicTitle +
+      ' ?'
+    "
     (close)="showToggleStatusModal.set(false)"
-    (confirm)="onToggleStatusConfirmed()" />
+    (confirm)="onToggleStatusConfirmed()"
+  />
 }
 
 @if (showUpdateTopicModal() && selectedTopic()) {
   <app-update-topic-modal
-  [topic]="selectedTopic()!"
-  (close)="showUpdateTopicModal.set(false)"
-  (confirm)="onUpdateTopicConfirm($event)" />
+    [topic]="selectedTopic()!"
+    (close)="showUpdateTopicModal.set(false)"
+    (confirm)="onUpdateTopicConfirm($event)"
+  />
 }

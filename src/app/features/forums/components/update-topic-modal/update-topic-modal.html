@@ -8,17 +8,31 @@
     <div class="modal-body">
       <div class="field">
         <label for="title">Titre</label>
-        <input type="text" [value]="title()" (input)="title.set($any($event.target).value)" id="title" />
+        <input
+          type="text"
+          [value]="title()"
+          (input)="title.set($any($event.target).value)"
+          id="title"
+        />
       </div>
 
       <div class="field">
         <label for="message">Message</label>
-        <textarea rows="6" [value]="message()" (input)="message.set($any($event.target).value)" id="message"></textarea>
+        <textarea
+          rows="6"
+          [value]="message()"
+          (input)="message.set($any($event.target).value)"
+          id="message"
+        ></textarea>
       </div>
 
       <div class="field">
         <label for="categoryName">Catégorie</label>
-        <select [value]="categoryName()" (change)="categoryName.set($any($event.target).value)" id="categoryName">
+        <select
+          [value]="categoryName()"
+          (change)="categoryName.set($any($event.target).value)"
+          id="categoryName"
+        >
           <option value="">Sélectionner une catégorie</option>
           @for (cat of categories(); track cat) {
             <option [value]="cat">{{ cat }}</option>

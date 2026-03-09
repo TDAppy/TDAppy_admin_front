@@ -28,7 +28,7 @@ export class ForumDeactivatedContent implements OnInit {
     });
   }
 
-  async onActionTriggered(event: { key: string; row: TopicDeactivatedModel }):Promise<void> {
+  async onActionTriggered(event: { key: string; row: TopicDeactivatedModel }): Promise<void> {
     switch (event.key) {
       case 'activate':
         this.selectedTopic.set(event.row);
@@ -41,7 +41,7 @@ export class ForumDeactivatedContent implements OnInit {
     }
   }
 
-  async onToggleStatusConfirmed():Promise<void> {
+  async onToggleStatusConfirmed(): Promise<void> {
     const topic = this.selectedTopic();
     if (!topic) return;
     await this._topicListServiceApi.changeTopicStatus(topic.id);
@@ -50,7 +50,7 @@ export class ForumDeactivatedContent implements OnInit {
     this.selectedTopic.set(null);
   }
 
-  async onDeleteConfirmed():Promise<void> {
+  async onDeleteConfirmed(): Promise<void> {
     const topic = this.selectedTopic();
     if (!topic) return;
     await this._topicListServiceApi.deleteTopic(topic.id);

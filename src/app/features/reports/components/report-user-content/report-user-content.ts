@@ -10,7 +10,6 @@ import tableActions from '../../../../../../public/assets/data/actions-menu.json
   styleUrl: './report-user-content.css',
 })
 export class ReportUserContent {
-
   actions = tableActions.reportsUsers;
   columns = tableColumns.reportsUsers;
   data = [];

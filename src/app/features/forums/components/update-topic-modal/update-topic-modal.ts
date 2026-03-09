@@ -30,13 +30,13 @@ export class UpdateTopicModal implements OnInit {
     });
   }
 
-  onOverlayClick(event: MouseEvent):void {
+  onOverlayClick(event: MouseEvent): void {
     if (event.target === event.currentTarget) {
       this.closeModal.emit();
     }
   }
 
-  submit():void {
+  submit(): void {
     if (!this.title() || !this.message() || !this.categoryName()) {
       this.error.set('Tous les champs sont obligatoires.');
       return;
