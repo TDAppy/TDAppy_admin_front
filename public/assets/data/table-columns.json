@@ -19,13 +19,15 @@
   "usersBanned": [
     { "key": "id", "label": "Id" },
     { "key": "username", "label": "Pseudo" },
-    { "key": "banDuration", "label": "Durée de banissement" },
-    { "key": "banDates", "label": "Dates de banissement" }
+    { "key": "duration", "label": "Durée de banissement" },
+    { "key": "bannedAt", "label": "Dates de début du banissement" },
+    { "key": "bannedUntil", "label": "Date de fin du banissement" }
   ],
   "forumsList": [
     { "key": "id", "label": "Id" },
     { "key": "topicTitle", "label": "Titre du topic" },
     { "key": "authorUsername", "label": "Pseudo de l'auteur" },
+    { "key": "status", "label": "Etat du topic" },
     { "key": "createdAt", "label": "Date création du topic" }
   ],
   "forumsDeactivated": [
@@ -35,9 +37,8 @@
   ],
   "contentResources": [
     { "key": "id", "label": "Id" },
-    { "key": "image", "label": "Image" },
+    { "key": "image", "label": "Image", "type": "image" },
     { "key": "title", "label": "Titre" },
-    { "key": "publishedAt", "label": "Date de mise en ligne" },
-    { "key": "theme", "label": "Thème" }
+    { "key": "publishedAt", "label": "Date de mise en ligne" }
   ]
 }

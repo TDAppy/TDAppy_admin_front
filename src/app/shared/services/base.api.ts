@@ -73,6 +73,34 @@ export abstract class BaseApi {
     }
   }
 
+  protected async postFormData<T>(endpoint: string, formData: FormData): Promise<T> {
+    try {
+      const token = this._loginStore.getToken();
+      const headers = new HttpHeaders({
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      });
+      return await firstValueFrom(
+        this.http.post<T>(`${this.BASE_URL}${endpoint}`, formData, { headers }),
+      );
+    } catch (error) {
+      throw this._handleError(error);
+    }
+  }
+
+  protected async putFormData<T>(endpoint: string, formData: FormData): Promise<T> {
+    try {
+      const token = this._loginStore.getToken();
+      const headers = new HttpHeaders({
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      });
+      return await firstValueFrom(
+        this.http.put<T>(`${this.BASE_URL}${endpoint}`, formData, { headers }),
+      );
+    } catch (error) {
+      throw this._handleError(error);
+    }
+  }
+
   private _handleError(error: any): Error {
     if (error instanceof HttpErrorResponse) {
       let err: Error;

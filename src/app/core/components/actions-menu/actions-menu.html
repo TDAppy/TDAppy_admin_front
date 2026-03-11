@@ -1,0 +1,11 @@
+<button type="button" class="btn-actions" (click)="openMenu($event)">⋮</button>
+
+@if (isOpen()) {
+  <div class="context-menu" [style.top.px]="menuY()" [style.left.px]="menuX()">
+    @for (action of actions(); track action.key) {
+      <button type="button" class="context-menu-item" (click)="handleAction(action.key)">
+        {{ action.label }}
+      </button>
+    }
+  </div>
+}

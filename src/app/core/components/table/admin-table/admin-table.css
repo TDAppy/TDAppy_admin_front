@@ -57,3 +57,10 @@ td {
   color: #555555;
   cursor: pointer;
 }
+
+.table-img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 6px;
+}

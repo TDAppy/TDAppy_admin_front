@@ -1,0 +1,13 @@
+<div class="charts-wrapper">
+  <div class="chart-card">
+    <h2>Enfants</h2>
+    <p class="total">{{ childrenTotal() }} test(s) réalisé(s)</p>
+    <canvas baseChart [data]="childrenChartData()" [options]="chartOptions" type="pie"></canvas>
+  </div>
+
+  <div class="chart-card">
+    <h2>Adultes</h2>
+    <p class="total">{{ adultsTotal() }} test(s) réalisé(s)</p>
+    <canvas baseChart [data]="adultsChartData()" [options]="chartOptions" type="pie"></canvas>
+  </div>
+</div>

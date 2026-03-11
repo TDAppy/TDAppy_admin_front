@@ -3,3 +3,11 @@ export type UserModel = {
   username: string;
   status: string;
 };
+
+export type UserBannedModel = {
+  id: number;
+  username: string;
+  bannedAt: string;
+  bannedUntil: string | null;
+  duration: string;
+};
