@@ -9,6 +9,12 @@
   />
 </div>
 
+<app-pagination
+  [currentPage]="currentPage()"
+  [totalPages]="totalPages()"
+  [totalItems]="totalItems()"
+  (pageChange)="goToPage($event)" />
+
 @if (showToggleStatusModal() && selectedTopic()) {
   <app-confirm-delete-modal
     title="Changer le statut du topic"
@@ -19,7 +25,7 @@
       selectedTopic()!.topicTitle +
       ' ?'
     "
-    (close)="showToggleStatusModal.set(false)"
+    (closeModal)="showToggleStatusModal.set(false)"
     (confirm)="onToggleStatusConfirmed()"
   />
 }
@@ -27,7 +33,7 @@
 @if (showUpdateTopicModal() && selectedTopic()) {
   <app-update-topic-modal
     [topic]="selectedTopic()!"
-    (close)="showUpdateTopicModal.set(false)"
+    (closeModal)="showUpdateTopicModal.set(false)"
     (confirm)="onUpdateTopicConfirm($event)"
   />
 }

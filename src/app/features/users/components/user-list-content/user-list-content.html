@@ -9,10 +9,16 @@
   />
 </div>
 
+<app-pagination
+  [currentPage]="currentPage()"
+  [totalPages]="totalPages()"
+  [totalItems]="totalItems()"
+  (pageChange)="goToPage($event)" />
+
 @if (showBanModal() && selectedUser()) {
   <app-ban-modal
     [username]="selectedUser()!.username"
-    (close)="showBanModal.set(false)"
+    (closeModal)="showBanModal.set(false)"
     (confirm)="onBanConfirmed($event)"
   />
 }
@@ -21,7 +27,7 @@
   <app-confirm-delete-modal
     title="Supprimer l'utilisateur"
     [description]="'Voulez-vous vraiment supprimer ' + selectedUser()!.username + ' ?'"
-    (close)="showDeleteModal.set(false)"
+    (closeModal)="showDeleteModal.set(false)"
     (confirm)="onDeleteConfirmed()"
   />
 }

@@ -7,10 +7,11 @@ import tableActions from '../../../../../../public/assets/data/actions-menu.json
 import { ConfirmDeleteModal } from '@/features/users/components/confirm-delete-modal/confirm-delete-modal';
 import { environment } from '@/../environments/environment';
 import { UpdateTopicModal } from '@/features/forums/components/update-topic-modal/update-topic-modal';
+import { Pagination } from '@/core/components/pagination/pagination';
 
 @Component({
   selector: 'app-forum-list-content',
-  imports: [AdminTable, ConfirmDeleteModal, UpdateTopicModal],
+  imports: [AdminTable, ConfirmDeleteModal, UpdateTopicModal, Pagination],
   templateUrl: './forum-list-content.html',
   styleUrl: './forum-list-content.css',
 })
@@ -20,14 +21,28 @@ export class ForumListContent implements OnInit {
   actions = tableActions.forumsList;
   columns = tableColumns.forumsList;
   data = signal<TopicModel[]>([]);
+  currentPage = signal(0);
+  totalPages = signal(0);
+  totalItems = signal(0);
   showToggleStatusModal = signal(false);
   showUpdateTopicModal = signal(false);
   selectedTopic = signal<TopicModel | null>(null);
 
   ngOnInit(): void {
-    this._topicListServiceApi.getAllTopics().then((result) => {
-      this.data.set(result);
+    this.loadTopics();
+  }
+
+  loadTopics(): void {
+    this._topicListServiceApi.getAllTopics(this.currentPage()).then((result) => {
+      this.data.set(result.content);
+      this.totalPages.set(result.totalPages);
+      this.totalItems.set(result.totalItems);
     });
+  }
+
+  goToPage(page: number): void {
+    this.currentPage.set(page);
+    this.loadTopics();
   }
 
   async onActionTriggered(event: { key: string; row: TopicModel }): Promise<void> {

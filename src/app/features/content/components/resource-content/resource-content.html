@@ -1,5 +1,33 @@
 <h1>Liste des ressources</h1>
+<button type="button" class="btn-add" (click)="showAddModal.set(true)">+</button>
 
+<h2>Ressources pour les enfants :</h2>
 <div class="admin-table-container">
-  <app-admin-table [columns]="columns" [data]="data" [actions]="actions" />
+  <app-admin-table [columns]="columns" [data]="childrenData()" [actions]="actions" (actionTrigerred)="onActionTriggered($event)" />
 </div>
+
+<h2>Ressources pour les adultes :</h2>
+<div class="admin-table-container">
+  <app-admin-table [columns]="columns" [data]="adultsData()" [actions]="actions" (actionTrigerred)="onActionTriggered($event)"/>
+</div>
+
+@if (showAddModal()) {
+  <app-add-resource-modal
+    (closeModal)="showAddModal.set(false)"
+    (confirm)="onResourceConfirmed($event)" />
+}
+
+@if (showUpdateModal() && selectedResource()) {
+  <app-update-resource-modal
+    [resource]="selectedResource()!"
+    (closeModal)="showUpdateModal.set(false)"
+    (confirm)="onUpdateConfirmed($event.payload)" />
+}
+
+@if (showDeleteModal() && selectedResource()) {
+  <app-confirm-delete-modal
+    title="Supprimer la ressource"
+    [description]="'Voulez-vous vraiment supprimer ' + selectedResource()!.title + ' ?'"
+    (closeModal)="showDeleteModal.set(false)"
+    (confirm)="onDeleteConfirmed()" />
+}

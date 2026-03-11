@@ -6,10 +6,11 @@ import { UserBannedModel } from '@/features/users/models/user.model';
 import tableActions from '@/../../public/assets/data/actions-menu.json';
 import { UserServiceApi } from '@/features/users/services/user-service-api';
 import { ConfirmDeleteModal } from '@/features/users/components/confirm-delete-modal/confirm-delete-modal';
+import { Pagination } from '@/core/components/pagination/pagination';
 
 @Component({
   selector: 'app-user-banned-content',
-  imports: [AdminTable, ConfirmDeleteModal],
+  imports: [AdminTable, ConfirmDeleteModal, Pagination],
   templateUrl: './user-banned-content.html',
   styleUrl: './user-banned-content.css',
 })
@@ -20,13 +21,27 @@ export class UserBannedContent implements OnInit {
   actions = tableActions.usersBanned;
   columns = tableColumns.usersBanned;
   data = signal<UserBannedModel[]>([]);
+  currentPage = signal(0);
+  totalPages = signal(0);
+  totalItems = signal(0);
   showDeleteModal = signal(false);
   selectedUser = signal<UserBannedModel | null>(null);
 
   ngOnInit(): void {
-    this._userBannedServiceApi.getAllBannedUsers().then((result) => {
-      this.data.set(result);
+    this.loadBannedUsers();
+  }
+
+  loadBannedUsers(): void {
+    this._userBannedServiceApi.getAllBannedUsers(this.currentPage()).then((result) => {
+      this.data.set(result.content);
+      this.totalPages.set(result.totalPages);
+      this.totalItems.set(result.totalItems);
     });
+  }
+
+  goToPage(page: number): void {
+    this.currentPage.set(page);
+    this.loadBannedUsers();
   }
 
   async onActionTriggered(event: { key: string; row: UserBannedModel }): Promise<void> {

@@ -1,0 +1,35 @@
+@import '../../../../shared/styles/modal.shared.css';
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.field input,
+.field textarea,
+.field select {
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.current-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 13px;
+  margin: 0;
+}

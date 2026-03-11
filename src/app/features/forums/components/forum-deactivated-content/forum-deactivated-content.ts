@@ -5,10 +5,11 @@ import tableActions from '../../../../../../public/assets/data/actions-menu.json
 import { TopicServiceApi } from '@/features/forums/services/topic-service-api';
 import { TopicDeactivatedModel } from '@/features/forums/models/topic.model';
 import { ConfirmDeleteModal } from '@/features/users/components/confirm-delete-modal/confirm-delete-modal';
+import { Pagination } from '@/core/components/pagination/pagination';
 
 @Component({
   selector: 'app-forum-deactivated-content',
-  imports: [AdminTable, ConfirmDeleteModal],
+  imports: [AdminTable, ConfirmDeleteModal, Pagination],
   templateUrl: './forum-deactivated-content.html',
   styleUrl: './forum-deactivated-content.css',
 })
@@ -18,14 +19,28 @@ export class ForumDeactivatedContent implements OnInit {
   actions = tableActions.forumsDeactivated;
   columns = tableColumns.forumsDeactivated;
   data = signal<TopicDeactivatedModel[]>([]);
+  currentPage = signal(0);
+  totalPages = signal(0);
+  totalItems = signal(0);
   showToggleStatusModal = signal(false);
   showDeleteModal = signal(false);
   selectedTopic = signal<TopicDeactivatedModel | null>(null);
 
   ngOnInit(): void {
-    this._topicListServiceApi.getAllTopicsDeactivated().then((result) => {
-      this.data.set(result);
+    this.loadDeactivatedTopics();
+  }
+
+  loadDeactivatedTopics(): void {
+    this._topicListServiceApi.getAllTopicsDeactivated(this.currentPage()).then((result) => {
+      this.data.set(result.content);
+      this.totalPages.set(result.totalPages);
+      this.totalItems.set(result.totalItems);
     });
+  }
+
+  goToPage(page: number): void {
+    this.currentPage.set(page);
+    this.loadDeactivatedTopics();
   }
 
   async onActionTriggered(event: { key: string; row: TopicDeactivatedModel }): Promise<void> {

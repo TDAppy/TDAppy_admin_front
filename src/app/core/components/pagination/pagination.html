@@ -1,0 +1,16 @@
+<div class="pagination">
+  <button type="button" [disabled]="currentPage() === 0" (click)="pageChange.emit(currentPage() - 1)">←</button>
+
+  @for (page of getPagesArray(); track page) {
+    <button
+      type="button"
+      [class.active]="page === currentPage()"
+      (click)="pageChange.emit(page)">
+      {{ page + 1 }}
+    </button>
+  }
+
+  <button type="button" [disabled]="currentPage() === totalPages() - 1" (click)="pageChange.emit(currentPage() + 1)">→</button>
+</div>
+
+<p class="pagination-info">{{ totalItems() }} résultat(s)</p>
