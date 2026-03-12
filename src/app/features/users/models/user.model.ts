@@ -2,6 +2,7 @@ export type UserModel = {
   id: number;
   username: string;
   status: string;
+  isBanned: boolean;
 };
 
 export type UserBannedModel = {

@@ -11,11 +11,20 @@ export class ActionsMenu {
   actions = input.required<TableAction[]>();
   row = input.required<any>();
   isOpen = input.required<boolean>();
+  disabledKeys = input<Record<string, string>>({});
   toggleMenu = output<void>();
   actionTrigerred = output<{ key: string; row: any }>();
 
   menuX = signal(0);
   menuY = signal(0);
+
+  isDisabled(key: string): boolean {
+    return key in this.disabledKeys();
+  }
+
+  getTooltip(key: string): string {
+    return this.disabledKeys()[key] ?? '';
+  }
 
   openMenu(event: MouseEvent): void {
     event.stopPropagation();
@@ -25,7 +34,7 @@ export class ActionsMenu {
   }
 
   handleAction(key: string): void {
-    console.log('Action:', key, 'Row:', this.row());
+    if(this.isDisabled(key)) return;
     this.actionTrigerred.emit({ key, row: this.row() });
     this.toggleMenu.emit();
   }

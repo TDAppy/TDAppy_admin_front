@@ -21,6 +21,7 @@ export class UserListServiceApi extends BaseApi {
         id: item.id,
         username: item.username,
         status: item.isDeleted ? 'Supprimé' : item.isBanned ? 'Banni' : 'Actif',
+        isBanned: item.isBanned,
       })),
       currentPage: response.currentPage,
       totalPages: response.totalPages,

@@ -27,4 +27,9 @@ export class LoginStore {
   getToken(): string | null {
     return this._token() ?? localStorage.getItem('auth_token');
   }
+
+  clearToken(): void {
+    this._token.set(null);
+    localStorage.removeItem('auth_token');
+  }
 }

@@ -1,14 +1,17 @@
 {
   "reportsUsers": [
-    { "key": "username", "label": "Pseudo" },
-    { "key": "reason", "label": "Raisons" },
+    { "key": "username", "label": "Utilisateur signalé" },
+    { "key": "reporterUser", "label": "Signalé par"},
     { "key": "reportedMessage", "label": "Message signalé" },
+    { "key": "reasons", "label": "Raisons" },
     { "key": "reportedAt", "label": "Date de signalement" }
   ],
   "reportsTopics": [
     { "key": "topicTitle", "label": "Titre du topic" },
-    { "key": "authorUsername", "label": "Pseudo de l'auteur" },
-    { "key": "reason", "label": "Raisons" },
+    { "key": "username", "label": "Pseudo de l'auteur" },
+    { "key": "reporterUser", "label": "Signalé par" },
+    { "key": "reportedMessage", "label": "Contenu du topic" },
+    { "key": "reasons", "label": "Raisons" },
     { "key": "reportedAt", "label": "Date de signalement" }
   ],
   "usersList": [

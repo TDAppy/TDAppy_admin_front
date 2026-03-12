@@ -12,9 +12,15 @@ export class AdminTable {
   columns = input.required<TableColumn[]>();
   data = input.required<any[]>();
   actions = input.required<TableAction[]>();
+  disabledKeysFn = input<(row: any) => Record<string, string>>(() => ({}));
   actionTrigerred = output<{ key: string; row: any }>();
 
   openMenuIndex = signal<number | null>(null);
+
+  getDisabledKeys(row: any): Record<string, string> {
+    const result = this.disabledKeysFn()(row);
+    return result;
+  }
 
   onActionTrigerred(event: { key: string; row: any }): void {
     this.actionTrigerred.emit(event);

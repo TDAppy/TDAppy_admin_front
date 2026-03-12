@@ -7,4 +7,5 @@ export type TableColumn = {
 export type TableAction = {
   key: string;
   label: string;
+  disabledTooltip?: string;
 };

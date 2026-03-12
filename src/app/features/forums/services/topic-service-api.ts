@@ -68,6 +68,10 @@ export class TopicServiceApi extends BaseApi {
     await this.put(`${this._url}/${id}`, payload);
   }
 
+  async deactivateTopic(id: number): Promise<void> {
+    await this.patch(`${this._url}/${id}/deactivate`, {});
+  }
+
   async deleteTopic(id: number): Promise<void> {
     await this.delete(`${this._url}/${id}`);
   }
