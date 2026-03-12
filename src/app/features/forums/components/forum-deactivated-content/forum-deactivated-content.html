@@ -1,5 +1,34 @@
 <h1>Liste des forums désactivés</h1>
 
 <div class="admin-table-container">
-  <app-admin-table [columns]="columns" [data]="data" />
+  <app-admin-table
+    [columns]="columns"
+    [data]="data()"
+    [actions]="actions"
+    (actionTrigerred)="onActionTriggered($event)"
+  />
 </div>
+
+<app-pagination
+  [currentPage]="currentPage()"
+  [totalPages]="totalPages()"
+  [totalItems]="totalItems()"
+  (pageChange)="goToPage($event)" />
+
+@if (showToggleStatusModal() && selectedTopic()) {
+  <app-confirm-delete-modal
+    title="Changer le statut du topic"
+    [description]="'Voulez-vous ' + 'activer' + ' le topic ' + selectedTopic()!.topicTitle + ' ?'"
+    (closeModal)="showToggleStatusModal.set(false)"
+    (confirm)="onToggleStatusConfirmed()"
+  />
+}
+
+@if (showDeleteModal() && selectedTopic()) {
+  <app-confirm-delete-modal
+    title="Supprimer l'utilisateur"
+    [description]="'Voulez-vous vraiment supprimer le topic ' + selectedTopic()!.topicTitle + ' ?'"
+    (closeModal)="showDeleteModal.set(false)"
+    (confirm)="onDeleteConfirmed()"
+  />
+}

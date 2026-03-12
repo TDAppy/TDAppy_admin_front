@@ -9,13 +9,14 @@ import { ForumListPage } from '@/features/forums/pages/forum-list-page';
 import { ForumDeactivatedPage } from '@/features/forums/pages/forum-deactivated-page';
 import { ContentResourcePage } from '@/features/content/pages/content-resource-page';
 import { StatisticPage } from '@/features/statistic/pages/statistic-page';
+import { authGuard } from '@/router/guards/auth-guard';
 
 export const routes: Routes = [
   { path: '', component: LoginPage },
-  { path: 'dashboard', component: DashboardPage },
-
+  { path: 'dashboard', component: DashboardPage, canActivate: [authGuard] },
   {
     path: 'reports',
+    canActivate: [authGuard],
     children: [
       { path: 'users', component: ReportUserPage },
       { path: 'topics', component: ReportTopicPage },
@@ -23,28 +24,29 @@ export const routes: Routes = [
   },
   {
     path: 'users',
+    canActivate: [authGuard],
     children: [
-      { path: 'list', component: UserListPage },
-      { path: 'banned', component: UserBannedPage },
+      { path: 'list', component: UserListPage},
+      { path: 'banned', component: UserBannedPage},
     ],
   },
   {
     path: 'forums',
+    canActivate: [authGuard],
     children: [
       { path: 'list', component: ForumListPage },
-      { path: 'deactivated', component: ForumDeactivatedPage },
+      { path: 'deactivated', component: ForumDeactivatedPage},
     ],
   },
   {
     path: 'content',
+    canActivate: [authGuard],
     children: [
-      { path: 'resources', component: ContentResourcePage },
+      { path: 'resources', component: ContentResourcePage},
       { path: 'products', component: DashboardPage },
       { path: 'promotional-codes', component: DashboardPage },
     ],
   },
-
-  { path: 'statistics', component: StatisticPage },
-
-  { path: '**', redirectTo: 'dashboard' },
+  { path: 'statistics', component: StatisticPage, canActivate: [authGuard] },
+  { path: '**', redirectTo: 'dashboard'},
 ];

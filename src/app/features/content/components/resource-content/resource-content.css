@@ -3,3 +3,35 @@ h1 {
   justify-content: center;
   margin-bottom: 5rem;
 }
+
+h2{
+  font-size: clamp(18px, 3.5vw, 28px);
+  font-weight: 500;
+  text-decoration: underline;
+  margin : 5rem 0 1rem 0;
+}
+
+.btn-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background: var(--bleu-vert);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.btn-add:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}

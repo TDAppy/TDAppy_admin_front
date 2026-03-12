@@ -1,5 +1,29 @@
 <h1>Liste des utilisateurs signalés</h1>
 
 <div class="admin-table-container">
-  <app-admin-table [columns]="columns" [data]="data" />
+  <app-admin-table [columns]="columns" [data]="data()" [actions]="actions" [disabledKeysFn]="disabledKeysFn" (actionTrigerred)="onActionTriggered($event)" />
 </div>
+
+@if (showDeleteModal() && selectedReport()) {
+  <app-confirm-delete-modal
+    title="Rejeter le signalement"
+    [description]="'Voulez-vous vraiment rejeter le signalement sur le message de ' + selectedReport()!.username + ' ?'"
+    (closeModal)="showDeleteModal.set(false)"
+    (confirm)="onDeleteConfirmed()"
+  />
+}
+
+@if (showBanModal() && selectedReport()) {
+  <app-ban-modal
+    [username]="selectedReport()!.username"
+    (closeModal)="showBanModal.set(false)"
+    (confirm)="onBanConfirmed($event)" />
+}
+
+@if (showDeleteReplyModal() && selectedReport()) {
+  <app-confirm-delete-modal
+    title="Supprimer la réponse au topic"
+    [description]="'Voulez-vous vraiment supprimer la réponse au topic de ' + selectedReport()!.username + ' qui a été signalé ?'"
+    (closeModal)="showDeleteReplyModal.set(false)"
+    (confirm)="onDeleteReplyConfirmed()" />
+}

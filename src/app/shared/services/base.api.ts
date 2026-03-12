@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ErrorService } from '@/core/services/error.service';
 import { LoginStore } from '@/features/authentication/services/login/login-store';
+import { Router } from '@angular/router';
 
 @Injectable()
 export abstract class BaseApi {
@@ -11,6 +12,7 @@ export abstract class BaseApi {
   protected readonly BASE_URL = environment.apiUrl;
   private _errorService = inject(ErrorService);
   private readonly _loginStore = inject(LoginStore);
+  private _router = inject(Router);
 
   protected getHeaders(): HttpHeaders {
     const token = this._loginStore.getToken();
@@ -73,6 +75,34 @@ export abstract class BaseApi {
     }
   }
 
+  protected async postFormData<T>(endpoint: string, formData: FormData): Promise<T> {
+    try {
+      const token = this._loginStore.getToken();
+      const headers = new HttpHeaders({
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      });
+      return await firstValueFrom(
+        this.http.post<T>(`${this.BASE_URL}${endpoint}`, formData, { headers }),
+      );
+    } catch (error) {
+      throw this._handleError(error);
+    }
+  }
+
+  protected async putFormData<T>(endpoint: string, formData: FormData): Promise<T> {
+    try {
+      const token = this._loginStore.getToken();
+      const headers = new HttpHeaders({
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      });
+      return await firstValueFrom(
+        this.http.put<T>(`${this.BASE_URL}${endpoint}`, formData, { headers }),
+      );
+    } catch (error) {
+      throw this._handleError(error);
+    }
+  }
+
   private _handleError(error: any): Error {
     if (error instanceof HttpErrorResponse) {
       let err: Error;
@@ -81,6 +111,8 @@ export abstract class BaseApi {
           err = new Error('Données invalides');
           break;
         case 401:
+          this._router.navigate(['']);
+          this._loginStore.clearToken();
           err = new Error('Non autorisé');
           break;
         case 403:

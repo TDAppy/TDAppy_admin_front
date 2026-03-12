@@ -33,8 +33,7 @@ export class LoginFacade {
   }
 
   logout(): void {
-    this._store.setToken(null);
-    localStorage.removeItem('auth_token');
+    this._store.clearToken();
     this._router.navigate(['/']);
   }
 }

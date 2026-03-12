@@ -17,9 +17,29 @@
         @for (row of data(); track $index; let i = $index) {
           <tr [class.row-even]="i % 2 === 1">
             @for (col of columns(); track col.key) {
-              <td>{{ row[col.key] ?? '—' }}</td>
+              <td>
+                @if (col.type === 'image') {
+                  @if (row[col.key]) {
+                    <img [src]="row[col.key]" alt="image" class="table-img" />
+                  } @else {
+                    —
+                  }
+                } @else {
+                  {{ row[col.key] ?? '—' }}
+                }
+              </td>
             }
-            <td class="td-actions">⋮</td>
+            <td class="td-actions">
+              <app-actions-menu
+                [actions]="actions()"
+                [row]="row"
+                [isOpen]="openMenuIndex() === i"
+                [disabledKeys]="getDisabledKeys(row)"
+                (toggleMenu)="toggleMenu(i)"
+                (actionTrigerred)="onActionTrigerred($event)"
+              >
+              </app-actions-menu>
+            </td>
           </tr>
         }
       }
