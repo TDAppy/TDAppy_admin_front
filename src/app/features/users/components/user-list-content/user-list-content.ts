@@ -33,6 +33,14 @@ export class UserListContent implements OnInit {
     this.loadUsers();
   }
 
+  disabledKeysFn = (row: UserModel): Record<string, string> => {
+    const disabled: Record<string, string> = {};
+    if (row.isBanned) {
+      disabled['ban'] = 'Cet utilisateur est déjà banni';
+    }
+    return disabled;
+  };
+
   loadUsers(): void {
     this._userListServiceApi.getAllUsers(this.currentPage()).then((result) => {
       this.data.set(result.content);
@@ -64,7 +72,7 @@ export class UserListContent implements OnInit {
     if (!user) return;
     await this._userServiceApi.banUser(user.id, dto.bannedUntil ? new Date(dto.bannedUntil) : null);
 
-    this.data.set(this.data().map((u) => (u.id === user.id ? { ...u, status: 'Banni' } : u)));
+    this.data.set(this.data().map((u) => (u.id === user.id ? { ...u, status: 'Banni', isBanned: true } : u)));
 
     this.showBanModal.set(false);
     this.selectedUser.set(null);

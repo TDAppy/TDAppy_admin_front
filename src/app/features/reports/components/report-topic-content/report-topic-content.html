@@ -1,5 +1,22 @@
 <h1>Liste des topics signalés</h1>
 
 <div class="admin-table-container">
-  <app-admin-table [columns]="columns" [data]="data" [actions]="actions" />
+  <app-admin-table [columns]="columns" [data]="data()" [actions]="actions" [disabledKeysFn]="disabledKeysFn" (actionTrigerred)="onActionTriggered($event)"/>
 </div>
+
+@if (showToggleStatusModal() && selectedReport()) {
+  <app-confirm-delete-modal
+    title="Changer le statut du topic"
+    [description]="'Voulez-vous désactiver le topic ' + selectedReport()!.topicTitle + ' ?'"
+    (closeModal)="showToggleStatusModal.set(false)"
+    (confirm)="onToggleStatusConfirmed()" />
+}
+
+@if (showDeleteModal() && selectedReport()) {
+  <app-confirm-delete-modal
+    title="Rejeter le signalement"
+    [description]="'Voulez-vous vraiment rejeter le signalement sur le topic ' + selectedReport()!.topicTitle + ' ?'"
+    (closeModal)="showDeleteModal.set(false)"
+    (confirm)="onDeleteConfirmed()"
+  />
+}

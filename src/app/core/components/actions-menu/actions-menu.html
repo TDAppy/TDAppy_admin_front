@@ -3,9 +3,18 @@
 @if (isOpen()) {
   <div class="context-menu" [style.top.px]="menuY()" [style.left.px]="menuX()">
     @for (action of actions(); track action.key) {
-      <button type="button" class="context-menu-item" (click)="handleAction(action.key)">
-        {{ action.label }}
-      </button>
+      <div class="tooltip-wrapper">
+        <button
+          type="button"
+          class="context-menu-item"
+          [class.disabled]="isDisabled(action.key)"
+          (click)="handleAction(action.key)">
+          {{ action.label }}
+        </button>
+        @if (isDisabled(action.key)) {
+          <span class="tooltip">{{ getTooltip(action.key) }}</span>
+        }
+      </div>
     }
   </div>
 }

@@ -1,11 +1,14 @@
 {
   "reportsUsers": [
-    { "key": "removeReport", "label": "Retirer le signalement" },
-    { "key": "ban", "label": "Bannir" }
+    { "key": "see", "label": "Voir le topic" },
+    { "key": "removeReport", "label": "Rejeter le signalement" },
+    { "key": "ban", "label": "Bannir l'utilisateur" },
+    { "key": "deleteReply", "label": "Supprimer le message signalé" }
   ],
   "reportsTopics": [
-    { "key": "removeReport", "label": "Retirer le signalement" },
-    { "key": "deactivate", "label": "Rendre inactif" }
+    { "key": "see", "label": "Voir le topic" },
+    { "key": "removeReport", "label": "Rejeter le signalement" },
+    { "key": "deactivate", "label": "Désactiver le topic" }
   ],
   "usersList": [
     { "key": "ban", "label": "Bannir" },
