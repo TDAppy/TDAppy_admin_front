@@ -1,0 +1,5 @@
+{
+  "identifier" : "testAdmin",
+  "password" : "MotDePasse123.",
+  "role" : "ADMIN"
+}
