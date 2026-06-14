@@ -1,59 +1,116 @@
-# TDAppyAdminFront
+# README — TDAppy Admin Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
+## Présentation
 
-## Development server
+Le dashboard admin de TDAppy est une SPA (Single Page Application)
+développée avec Angular 19, réservée aux administrateurs de la plateforme.
+Elle permet de gérer les utilisateurs, le contenu du forum, les ressources
+documentaires, les signalements et de consulter les statistiques du quiz.
+Contrairement à l'application principale, ce frontend n'a pas vocation
+à être référencé — la stratégie CSR en SPA est donc optimale pour ce cas
+d'usage.
 
-To start a local development server, run:
+## Stack technique
 
-```bash
-ng serve
-```
+- Angular 19 — TypeScript 5
+- Angular Signals (gestion d'état)
+- Angular Router (lazy-loading, guards)
+- Tailwind CSS
+- Chart.js / ng2-charts (statistiques)
+- ESLint — Prettier — Husky (qualité du code)
+- Karma / Jasmine (tests unitaires et d'intégration)
+- Cypress (tests E2E)
+- Docker — GitHub Actions (CI/CD)
 
-Once the server is running, open your browser and navigate to `http://localhost:4201/`. The application will automatically reload whenever you modify any of the source files.
+## Prérequis
 
-## Code scaffolding
+- Node.js 20
+- npm 10+
+- Angular CLI (`npm install -g @angular/cli`)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Installation et lancement
 
 ```bash
-ng test
+# Cloner le dépôt
+git clone https://github.com/[organisation]/tdappy-admin.git
+cd tdappy-admin
+
+# Installer les dépendances
+npm ci
+
+# Lancer en développement
+npm start
 ```
 
-## Running end-to-end tests
+## Environnements
 
-For end-to-end (e2e) testing, run:
+Trois environnements sont configurés dans `src/environments/` :
+
+| Environnement | Commande                                    | API cible                              |
+|---------------|---------------------------------------------|----------------------------------------|
+| development   | `npm start`                                 | http://localhost:8080                  |
+| staging       | `npm run build -- --configuration=staging`  | https://staging-api.tdappy.fr          |
+| production    | `npm run build`                             | https://api.tdappy.fr                  |
+
+## Scripts disponibles
 
 ```bash
-ng e2e
+npm start                  # Lancer le serveur de développement
+npm run build              # Build de production
+npm run lint               # Vérification ESLint
+npm run test:unit          # Tests unitaires (Karma / Jasmine)
+npm run test:integration   # Tests d'intégration (Karma / Jasmine)
+npm run cypress:open       # Tests E2E en mode interactif
+npm run cypress:ci         # Tests E2E en mode headless (CI)
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Architecture
 
-## Additional Resources
+```
+src/
+├── app/
+│   ├── app.ts              — Composant racine (<app-root>)
+│   ├── app.config.ts       — Configuration Angular (providers, router)
+│   ├── router/
+│   │   ├── app.routes.ts   — Déclaration des routes (lazy-loading)
+│   │   └── guards/         — authGuard (accès réservé aux admins)
+│   ├── features/
+│   │   ├── authentication/ — Login admin
+│   │   ├── users/          — Gestion des utilisateurs et bannissements
+│   │   ├── forums/         — Modération des topics
+│   │   ├── reports/        — Gestion des signalements
+│   │   ├── content/        — Gestion des ressources documentaires
+│   │   ├── statistics/     — Statistiques du quiz (Chart.js)
+│   │   └── dashboard/      — Page d'accueil du back-office
+│   └── shared/
+│       ├── components/     — AdminTable, Pagination, Modales réutilisables
+│       ├── services/       — BaseApi, ErrorService…
+│       └── models/         — Interfaces TypeScript
+├── assets/                 — Images, fonts
+├── environments/           — Variables par environnement
+└── tests/
+    ├── config/             — karma.base.conf.js, cypress.config.ts
+    ├── unit/               — Specs unitaires
+    ├── integration/        — Specs d'intégration
+    └── e2e/                — Scénarios Cypress (navigate.cy.ts)
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Qualité du code
+
+- **ESLint** — analyse statique, règles Angular et TypeScript
+- **Prettier** — formatage automatique (printWidth 100, singleQuote)
+- **Husky** — git hooks bloquant le commit si lint ou format en échec
+
+## CI/CD
+
+Les pipelines GitHub Actions assurent :
+- **CI** — lint, tests unitaires, d'intégration et E2E à chaque push
+- **CD** — build de l'image Docker (Nginx) et déploiement sur le VPS OVH
+  à chaque merge sur `staging` ou `production`
+
+## Accès
+
+Le dashboard est accessible uniquement aux utilisateurs disposant
+du rôle `ROLE_ADMIN`. Toute tentative d'accès avec un compte standard
+est bloquée au niveau du `JwtFilter` côté API et de l'`authGuard`
+côté frontend.

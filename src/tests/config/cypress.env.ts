@@ -1,5 +1,3 @@
-import process from "process";
-
 type EnvKey = keyof typeof envs;
 
 const envs = {
