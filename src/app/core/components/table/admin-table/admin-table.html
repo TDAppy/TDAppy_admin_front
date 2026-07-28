@@ -3,9 +3,9 @@
     <thead>
       <tr>
         @for (col of columns(); track col.key) {
-          <th>{{ col.label }}</th>
+          <th scope="col">{{ col.label }}</th>
         }
-        <th class="th-actions"></th>
+        <th scope="col" class="th-actions" aria-label="Actions"></th>
       </tr>
     </thead>
     <tbody>

@@ -1,16 +1,26 @@
-<div class="pagination">
-  <button type="button" [disabled]="currentPage() === 0" (click)="pageChange.emit(currentPage() - 1)">←</button>
+<nav class="pagination" aria-label="Pagination">
+  <button
+    type="button"
+    aria-label="Page précédente"
+    [disabled]="currentPage() === 0"
+    (click)="pageChange.emit(currentPage() - 1)">←</button>
 
   @for (page of getPagesArray(); track page) {
     <button
       type="button"
       [class.active]="page === currentPage()"
+      [attr.aria-current]="page === currentPage() ? 'page' : null"
+      [attr.aria-label]="'Page ' + (page + 1)"
       (click)="pageChange.emit(page)">
       {{ page + 1 }}
     </button>
   }
 
-  <button type="button" [disabled]="currentPage() === totalPages() - 1" (click)="pageChange.emit(currentPage() + 1)">→</button>
-</div>
+  <button
+    type="button"
+    aria-label="Page suivante"
+    [disabled]="currentPage() === totalPages() - 1"
+    (click)="pageChange.emit(currentPage() + 1)">→</button>
+</nav>
 
 <p class="pagination-info">{{ totalItems() }} résultat(s)</p>

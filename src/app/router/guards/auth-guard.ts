@@ -6,9 +6,10 @@ export const authGuard: CanActivateFn = () => {
   const loginStore = inject(LoginStore)
   const router = inject(Router)
 
-  if (loginStore.getToken()){
+  if (loginStore.getToken() && loginStore.getRole() === 'ADMIN'){
     return true;
   }
 
+  loginStore.clearToken();
   return router.createUrlTree(['']);
 };
