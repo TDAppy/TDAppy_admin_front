@@ -63,7 +63,7 @@ export class ResourceContent implements OnInit {
     const resource = this.selectedResource();
     if (!resource) return;
     const updated = await this._resourceApi.updateResource(resource.id, payload);
-    const updateList = (list: ResourcesModel[]):ResourcesModel[] =>
+    const updateList = (list: ResourcesModel[]): ResourcesModel[] =>
       list.map((r) => (r.id === resource.id ? updated : r));
     this.childrenData.set(updateList(this.childrenData()));
     this.adultsData.set(updateList(this.adultsData()));

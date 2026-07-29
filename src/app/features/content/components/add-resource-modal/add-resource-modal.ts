@@ -1,10 +1,11 @@
 import { Component, inject, output, signal } from '@angular/core';
 import { ResourceCreateModel } from '@/features/content/models/resources.model';
 import { ResourceFileValidationService } from '@/features/content/services/resource-file-validation.service';
+import { ContentChange, QuillEditorComponent } from 'ngx-quill';
 
 @Component({
   selector: 'app-add-resource-modal',
-  imports: [],
+  imports: [QuillEditorComponent],
   templateUrl: './add-resource-modal.html',
   styleUrl: './add-resource-modal.css',
 })
@@ -30,6 +31,10 @@ export class AddResourceModal {
     if (event.target === event.currentTarget) {
       this.closeModal.emit();
     }
+  }
+
+  onContentChanged(event: ContentChange): void {
+    this.content.set(event.html ?? '');
   }
 
   onFileSelected(event: Event): void {

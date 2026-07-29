@@ -24,6 +24,7 @@
     "label": "Contenus",
     "children": [
       { "label": "Ressources", "route": "/content/resources" },
+      { "label": "Podcasts", "route": "/content/podcasts" },
       { "label": "Produits affiliés", "route": "/content/products" },
       { "label": "Codes promotionnels", "route": "/content/promotional-codes" }
     ]
@@ -31,5 +32,9 @@
   {
     "label": "Statistiques",
     "children": [{ "label": "Voir les statistiques", "route": "/statistics" }]
+  },
+  {
+    "label": "Système",
+    "children": [{ "label": "Logs API", "route": "/logs" }]
   }
 ]

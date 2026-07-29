@@ -72,7 +72,9 @@ export class UserListContent implements OnInit {
     if (!user) return;
     await this._userServiceApi.banUser(user.id, dto.bannedUntil ? new Date(dto.bannedUntil) : null);
 
-    this.data.set(this.data().map((u) => (u.id === user.id ? { ...u, status: 'Banni', isBanned: true } : u)));
+    this.data.set(
+      this.data().map((u) => (u.id === user.id ? { ...u, status: 'Banni', isBanned: true } : u)),
+    );
 
     this.showBanModal.set(false);
     this.selectedUser.set(null);

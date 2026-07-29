@@ -30,5 +30,9 @@
   "contentResources": [
     { "key": "edit", "label": "Modifier" },
     { "key": "delete", "label": "Supprimer" }
+  ],
+  "contentPodcasts": [
+    { "key": "edit", "label": "Modifier" },
+    { "key": "delete", "label": "Supprimer" }
   ]
 }
