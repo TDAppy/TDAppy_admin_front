@@ -14,7 +14,8 @@
   [currentPage]="currentPage()"
   [totalPages]="totalPages()"
   [totalItems]="totalItems()"
-  (pageChange)="goToPage($event)" />
+  (pageChange)="goToPage($event)"
+/>
 
 @if (showBanModal() && selectedUser()) {
   <app-ban-modal

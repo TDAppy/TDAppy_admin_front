@@ -1,0 +1,56 @@
+<div class="log-toolbar">
+  <label class="lines-field">
+    <span>Lignes affichées</span>
+    <select [value]="selectedLines()" (change)="onLineCountChange($any($event.target).value)">
+      @for (option of lineOptions; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+  </label>
+
+  <button type="button" class="btn-refresh" (click)="refresh()" [disabled]="isLoading()">
+    {{ isLoading() ? 'Actualisation...' : 'Rafraîchir' }}
+  </button>
+
+  @if (totalLines() > 0) {
+    <span class="total-info">{{ totalLines() }} lignes au total dans le fichier</span>
+  }
+</div>
+
+@if (parsedLines().length > 0) {
+  <div class="level-filters" role="group" aria-label="Filtrer par catégorie de log">
+    @for (summary of levelSummaries(); track summary.level) {
+      <button
+        type="button"
+        class="level-chip level-chip-{{ summary.level.toLowerCase() }}"
+        [class.active]="isLevelActive(summary.level)"
+        (click)="toggleLevel(summary.level)"
+        [attr.aria-pressed]="isLevelActive(summary.level)"
+      >
+        {{ summary.level }} ({{ summary.count }})
+      </button>
+    }
+  </div>
+}
+
+@if (error()) {
+  <p class="log-message log-message-error">{{ error() }}</p>
+} @else if (!available()) {
+  <p class="log-message">
+    Aucun fichier de log trouvé pour le moment (le serveur n'a peut-être pas encore été redémarré
+    depuis l'activation de la journalisation sur fichier).
+  </p>
+} @else if (lines().length === 0) {
+  <p class="log-message">Le fichier de log est vide.</p>
+} @else if (filteredLines().length === 0) {
+  <p class="log-message">Aucune ligne ne correspond aux catégories sélectionnées.</p>
+} @else {
+  <div class="log-output">
+    @for (entry of filteredLines(); track $index) {
+      <div class="log-card log-card-{{ entry.level.toLowerCase() }}">
+        <span class="log-level-badge">{{ entry.level }}</span>
+        <span class="log-text">{{ entry.text }}</span>
+      </div>
+    }
+  </div>
+}

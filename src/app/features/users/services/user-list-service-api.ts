@@ -16,8 +16,8 @@ export class UserListServiceApi extends BaseApi {
       .set('size', 50);
     const response = await this.get<any>(this._url, params);
 
-    return{
-      content: response.content.map((item:any) => ({
+    return {
+      content: response.content.map((item: any) => ({
         id: item.id,
         username: item.username,
         status: item.isDeleted ? 'Supprimé' : item.isBanned ? 'Banni' : 'Actif',

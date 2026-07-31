@@ -3,7 +3,8 @@
   role="button"
   tabindex="0"
   (click)="onOverlayClick($event)"
-  (keydown.escape)="closeModal.emit()">
+  (keydown.escape)="closeModal.emit()"
+>
   <div class="modal-panel">
     <div class="modal-header">
       <h2>Ajouter une ressource</h2>
@@ -13,17 +14,32 @@
     <div class="modal-body">
       <div class="field">
         <label for="title">Titre *</label>
-        <input id="title" type="text" [value]="title()" (input)="title.set($any($event.target).value)" />
+        <input
+          id="title"
+          type="text"
+          [value]="title()"
+          (input)="title.set($any($event.target).value)"
+        />
       </div>
 
       <div class="field">
         <label for="content">Contenu *</label>
-        <textarea id="content" rows="4" [value]="content()" (input)="content.set($any($event.target).value)"></textarea>
+        <quill-editor
+          id="content"
+          placeholder="Rédige le contenu de l'article..."
+          [styles]="{ minHeight: '160px', maxHeight: '360px', overflowY: 'auto' }"
+          (onContentChanged)="onContentChanged($event)"
+        ></quill-editor>
       </div>
 
       <div class="field">
         <label for="urlImage">Image</label>
-        <input id="urlImage" type="file" accept=".jpg,.jpeg,.png,.webp" (change)="onFileSelected($event)" />
+        <input
+          id="urlImage"
+          type="file"
+          accept=".jpg,.jpeg,.png,.webp"
+          (change)="onFileSelected($event)"
+        />
       </div>
 
       <div class="field">
@@ -38,12 +54,22 @@
 
       <div class="field">
         <label for="description">Description</label>
-        <textarea id="description" rows="3" [value]="description()" (input)="description.set($any($event.target).value)"></textarea>
+        <textarea
+          id="description"
+          rows="3"
+          [value]="description()"
+          (input)="description.set($any($event.target).value)"
+        ></textarea>
       </div>
 
       <div class="field">
         <label for="reference">Référence</label>
-        <input id="reference" type="text" [value]="reference()" (input)="reference.set($any($event.target).value)" />
+        <input
+          id="reference"
+          type="text"
+          [value]="reference()"
+          (input)="reference.set($any($event.target).value)"
+        />
       </div>
 
       <div class="field">

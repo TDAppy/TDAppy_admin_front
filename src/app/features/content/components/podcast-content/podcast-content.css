@@ -4,13 +4,6 @@ h1 {
   margin-bottom: 5rem;
 }
 
-h2 {
-  font-size: clamp(18px, 3.5vw, 28px);
-  font-weight: 500;
-  text-decoration: underline;
-  margin: 5rem 0 1rem 0;
-}
-
 .btn-add {
   display: flex;
   align-items: center;

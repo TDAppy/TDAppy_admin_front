@@ -6,6 +6,9 @@ import { ResourceCreateModel, ResourcesModel } from '@/features/content/models/r
   providedIn: 'root',
 })
 export class ResourceContentServiceApi extends BaseApi {
+  // environment.apiUrl (BaseApi.BASE_URL) inclut déjà le préfixe /admin pour cette application
+  // (voir environment.*.ts), donc ce suffixe ne doit PAS le répéter : /resources ici correspond
+  // bien à /admin/resources côté API (AdminResourceController).
   private readonly _url = '/resources';
 
   async getAllResourcesForChildren(): Promise<ResourcesModel[]> {

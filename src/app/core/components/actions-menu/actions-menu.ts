@@ -34,7 +34,7 @@ export class ActionsMenu {
   }
 
   handleAction(key: string): void {
-    if(this.isDisabled(key)) return;
+    if (this.isDisabled(key)) return;
     this.actionTrigerred.emit({ key, row: this.row() });
     this.toggleMenu.emit();
   }

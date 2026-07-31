@@ -1,7 +1,7 @@
 {
   "reportsUsers": [
     { "key": "username", "label": "Utilisateur signalé" },
-    { "key": "reporterUser", "label": "Signalé par"},
+    { "key": "reporterUser", "label": "Signalé par" },
     { "key": "reportedMessage", "label": "Message signalé" },
     { "key": "reasons", "label": "Raisons" },
     { "key": "reportedAt", "label": "Date de signalement" }
@@ -42,6 +42,13 @@
     { "key": "id", "label": "Id" },
     { "key": "image", "label": "Image", "type": "image" },
     { "key": "title", "label": "Titre" },
+    { "key": "publishedAt", "label": "Date de mise en ligne" }
+  ],
+  "contentPodcasts": [
+    { "key": "id", "label": "Id" },
+    { "key": "image", "label": "Jaquette", "type": "image" },
+    { "key": "title", "label": "Titre" },
+    { "key": "duration", "label": "Durée" },
     { "key": "publishedAt", "label": "Date de mise en ligne" }
   ]
 }
