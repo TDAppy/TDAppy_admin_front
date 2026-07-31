@@ -1,13 +1,17 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, inject, output, signal } from '@angular/core';
 import { ResourceCreateModel } from '@/features/content/models/resources.model';
+import { ResourceFileValidationService } from '@/features/content/services/resource-file-validation.service';
+import { ContentChange, QuillEditorComponent } from 'ngx-quill';
 
 @Component({
   selector: 'app-add-resource-modal',
-  imports: [],
+  imports: [QuillEditorComponent],
   templateUrl: './add-resource-modal.html',
   styleUrl: './add-resource-modal.css',
 })
 export class AddResourceModal {
+  private readonly _fileValidation = inject(ResourceFileValidationService);
+
   closeModal = output<void>();
   confirm = output<ResourceCreateModel>();
 
@@ -20,8 +24,8 @@ export class AddResourceModal {
   theme = signal('');
   error = signal('');
 
-  types = ['ADMINISTRATIVE', 'MEDICAL', 'PSYCHOEDUCATION'];
-  themes = ['CHILDREN', 'ADULTS'];
+  readonly types = this._fileValidation.types;
+  readonly themes = this._fileValidation.themes;
 
   onOverlayClick(event: MouseEvent): void {
     if (event.target === event.currentTarget) {
@@ -29,19 +33,18 @@ export class AddResourceModal {
     }
   }
 
+  onContentChanged(event: ContentChange): void {
+    this.content.set(event.html ?? '');
+  }
+
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const file = input.files[0];
-      const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
-      const maxSize = 5 * 1024 * 1024;
+      const validationError = this._fileValidation.validateImageFile(file);
 
-      if (!allowedTypes.includes(file.type)) {
-        this.error.set('Format non autorisé. Formats acceptés : JPG, PNG, WEBP');
-        return;
-      }
-      if (file.size > maxSize) {
-        this.error.set('La taille du fichier ne doit pas dépasser 5MB');
+      if (validationError) {
+        this.error.set(validationError);
         return;
       }
       this.error.set('');

@@ -13,7 +13,8 @@
   [currentPage]="currentPage()"
   [totalPages]="totalPages()"
   [totalItems]="totalItems()"
-  (pageChange)="goToPage($event)" />
+  (pageChange)="goToPage($event)"
+/>
 
 @if (showToggleStatusModal() && selectedTopic()) {
   <app-confirm-delete-modal

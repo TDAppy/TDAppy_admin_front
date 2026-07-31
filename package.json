@@ -41,6 +41,8 @@
     "chart.js": "^4.5.1",
     "lucide-angular": "^0.576.0",
     "ng2-charts": "^10.0.0",
+    "ngx-quill": "^30.0.0",
+    "quill": "^2.0.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

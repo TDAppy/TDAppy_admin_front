@@ -5,7 +5,7 @@ import { StatisticQuizModel } from '@/features/statistic/models/statistic.model'
 @Injectable({
   providedIn: 'root',
 })
-export class StatisticsQuizServiceApi extends BaseApi{
+export class StatisticsQuizServiceApi extends BaseApi {
   private readonly _url = '/statistics/quiz';
 
   async getStatisticsQuiz(): Promise<StatisticQuizModel[]> {

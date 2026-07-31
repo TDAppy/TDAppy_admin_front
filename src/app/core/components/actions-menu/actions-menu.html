@@ -8,7 +8,8 @@
           type="button"
           class="context-menu-item"
           [class.disabled]="isDisabled(action.key)"
-          (click)="handleAction(action.key)">
+          (click)="handleAction(action.key)"
+        >
           {{ action.label }}
         </button>
         @if (isDisabled(action.key)) {

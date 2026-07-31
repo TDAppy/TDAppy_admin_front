@@ -8,7 +8,9 @@ import { UserBannedPage } from '@/features/users/pages/user-banned-page';
 import { ForumListPage } from '@/features/forums/pages/forum-list-page';
 import { ForumDeactivatedPage } from '@/features/forums/pages/forum-deactivated-page';
 import { ContentResourcePage } from '@/features/content/pages/content-resource-page';
+import { ContentPodcastPage } from '@/features/content/pages/content-podcast-page';
 import { StatisticPage } from '@/features/statistic/pages/statistic-page';
+import { LogsPage } from '@/features/logs/pages/logs-page';
 import { authGuard } from '@/router/guards/auth-guard';
 
 export const routes: Routes = [
@@ -26,8 +28,8 @@ export const routes: Routes = [
     path: 'users',
     canActivate: [authGuard],
     children: [
-      { path: 'list', component: UserListPage},
-      { path: 'banned', component: UserBannedPage},
+      { path: 'list', component: UserListPage },
+      { path: 'banned', component: UserBannedPage },
     ],
   },
   {
@@ -35,18 +37,20 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: 'list', component: ForumListPage },
-      { path: 'deactivated', component: ForumDeactivatedPage},
+      { path: 'deactivated', component: ForumDeactivatedPage },
     ],
   },
   {
     path: 'content',
     canActivate: [authGuard],
     children: [
-      { path: 'resources', component: ContentResourcePage},
+      { path: 'resources', component: ContentResourcePage },
+      { path: 'podcasts', component: ContentPodcastPage },
       { path: 'products', component: DashboardPage },
       { path: 'promotional-codes', component: DashboardPage },
     ],
   },
   { path: 'statistics', component: StatisticPage, canActivate: [authGuard] },
-  { path: '**', redirectTo: 'dashboard'},
+  { path: 'logs', component: LogsPage, canActivate: [authGuard] },
+  { path: '**', redirectTo: 'dashboard' },
 ];
