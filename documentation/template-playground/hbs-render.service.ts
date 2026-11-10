@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 declare const Handlebars: any;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HbsRenderService {
   private handlebarsInstance: any;
@@ -22,32 +22,35 @@ export class HbsRenderService {
 
   private registerHelpers() {
     // Register the 'compare' helper
-    this.handlebarsInstance.registerHelper('compare', (left: any, operator: string, right: any, options: any) => {
-      let result;
-      switch (operator) {
-        case '===':
-          result = left === right;
-          break;
-        case '!==':
-          result = left !== right;
-          break;
-        case '<':
-          result = left < right;
-          break;
-        case '>':
-          result = left > right;
-          break;
-        case '<=':
-          result = left <= right;
-          break;
-        case '>=':
-          result = left >= right;
-          break;
-        default:
-          result = false;
-      }
-      return result ? options.fn(this) : options.inverse(this);
-    });
+    this.handlebarsInstance.registerHelper(
+      'compare',
+      (left: any, operator: string, right: any, options: any) => {
+        let result;
+        switch (operator) {
+          case '===':
+            result = left === right;
+            break;
+          case '!==':
+            result = left !== right;
+            break;
+          case '<':
+            result = left < right;
+            break;
+          case '>':
+            result = left > right;
+            break;
+          case '<=':
+            result = left <= right;
+            break;
+          case '>=':
+            result = left >= right;
+            break;
+          default:
+            result = false;
+        }
+        return result ? options.fn(this) : options.inverse(this);
+      },
+    );
 
     // Register the 'unless' helper
     this.handlebarsInstance.registerHelper('unless', (conditional: any, options: any) => {
@@ -81,23 +84,23 @@ export class HbsRenderService {
     this.handlebarsInstance.registerHelper('t', (key: string) => {
       // Simple translation mapping for preview
       const translations: { [key: string]: string } = {
-        'info': 'Information',
-        'source': 'Source',
-        'example': 'Example',
-        'template': 'Template',
-        'styles': 'Styles',
-        'component': 'Component',
-        'module': 'Module',
-        'overview': 'Overview',
-        'components': 'Components',
-        'modules': 'Modules',
-        'file': 'File',
-        'description': 'Description',
-        'selector': 'Selector',
-        'properties': 'Properties',
-        'methods': 'Methods',
-        'inputs': 'Inputs',
-        'outputs': 'Outputs'
+        info: 'Information',
+        source: 'Source',
+        example: 'Example',
+        template: 'Template',
+        styles: 'Styles',
+        component: 'Component',
+        module: 'Module',
+        overview: 'Overview',
+        components: 'Components',
+        modules: 'Modules',
+        file: 'File',
+        description: 'Description',
+        selector: 'Selector',
+        properties: 'Properties',
+        methods: 'Methods',
+        inputs: 'Inputs',
+        outputs: 'Outputs',
       };
       return translations[key] || key;
     });
@@ -116,16 +119,22 @@ export class HbsRenderService {
     });
 
     // Register the 'isTabEnabled' helper
-    this.handlebarsInstance.registerHelper('isTabEnabled', (navTabs: any[], tabId: string, options: any) => {
-      const tab = navTabs && navTabs.find((t: any) => t.id === tabId);
-      return tab ? options.fn(this) : options.inverse(this);
-    });
+    this.handlebarsInstance.registerHelper(
+      'isTabEnabled',
+      (navTabs: any[], tabId: string, options: any) => {
+        const tab = navTabs && navTabs.find((t: any) => t.id === tabId);
+        return tab ? options.fn(this) : options.inverse(this);
+      },
+    );
 
     // Register the 'isInitialTab' helper
-    this.handlebarsInstance.registerHelper('isInitialTab', (navTabs: any[], tabId: string, options: any) => {
-      const isInitial = navTabs && navTabs.length > 0 && navTabs[0].id === tabId;
-      return isInitial ? options.fn(this) : options.inverse(this);
-    });
+    this.handlebarsInstance.registerHelper(
+      'isInitialTab',
+      (navTabs: any[], tabId: string, options: any) => {
+        const isInitial = navTabs && navTabs.length > 0 && navTabs[0].id === tabId;
+        return isInitial ? options.fn(this) : options.inverse(this);
+      },
+    );
   }
 
   renderTemplate(templateContent: string, data: any): string {
@@ -194,19 +203,23 @@ export class HbsRenderService {
           description: 'A sample component for demonstration',
           properties: [
             { name: 'title', type: 'string', description: 'The component title' },
-            { name: 'isVisible', type: 'boolean', description: 'Whether the component is visible' }
+            { name: 'isVisible', type: 'boolean', description: 'Whether the component is visible' },
           ],
           methods: [
             { name: 'ngOnInit', description: 'Lifecycle hook', signature: 'ngOnInit(): void' },
-            { name: 'onClick', description: 'Handle click events', signature: 'onClick(event: MouseEvent): void' }
-          ]
-        }
+            {
+              name: 'onClick',
+              description: 'Handle click events',
+              signature: 'onClick(event: MouseEvent): void',
+            },
+          ],
+        },
       ],
       navTabs: [
         { id: 'info', label: 'Info', href: '#info' },
         { id: 'source', label: 'Source', href: '#source' },
-        { id: 'example', label: 'Example', href: '#example' }
-      ]
+        { id: 'example', label: 'Example', href: '#example' },
+      ],
     };
   }
 }

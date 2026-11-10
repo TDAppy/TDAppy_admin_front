@@ -1,0 +1,48 @@
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        @for (col of columns(); track col.key) {
+          <th scope="col">{{ col.label }}</th>
+        }
+        <th scope="col" class="th-actions" aria-label="Actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (data().length === 0) {
+        <tr>
+          <td [attr.colspan]="columns().length + 1" class="empty">Aucun résultat.</td>
+        </tr>
+      } @else {
+        @for (row of data(); track $index; let i = $index) {
+          <tr [class.row-even]="i % 2 === 1">
+            @for (col of columns(); track col.key) {
+              <td>
+                @if (col.type === 'image') {
+                  @if (row[col.key]) {
+                    <img [src]="row[col.key]" alt="image" class="table-img" />
+                  } @else {
+                    —
+                  }
+                } @else {
+                  {{ row[col.key] ?? '—' }}
+                }
+              </td>
+            }
+            <td class="td-actions">
+              <app-actions-menu
+                [actions]="actions()"
+                [row]="row"
+                [isOpen]="openMenuIndex() === i"
+                [disabledKeys]="getDisabledKeys(row)"
+                (toggleMenu)="toggleMenu(i)"
+                (actionTrigerred)="onActionTrigerred($event)"
+              >
+              </app-actions-menu>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,13 @@
+<div class="card">
+  <h2>{{ item().label }}</h2>
+  <ul>
+    @for (child of item().children; track child.label) {
+      <li>
+        <a [routerLink]="child.route">
+          {{ child.label }}
+          <lucide-icon name="chevron-right" size="16"></lucide-icon>
+        </a>
+      </li>
+    }
+  </ul>
+</div>

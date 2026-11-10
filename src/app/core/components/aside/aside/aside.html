@@ -1,0 +1,51 @@
+<section [class.collapsed]="isCollapsed">
+  <div class="sidebar-content" [class.hidden]="isCollapsed">
+    <img src="assets/logo/Logo.png" alt="logo" routerLink="/dashboard" />
+
+    <div class="menu">
+      <ul class="tabs">
+        @for (item of menuItems; track item.label) {
+          <li class="tab" routerLinkActive="parent-active">
+            @if (item.children.length === 0) {
+              <a [routerLink]="item.children" routerLinkActive="active">{{ item.label }}</a>
+            } @else {
+              <span>{{ item.label }}</span>
+              <ul class="under-tabs">
+                @for (child of item.children; track child.label) {
+                  <li class="under-tab">
+                    <a [routerLink]="child.route" routerLinkActive="active">{{ child.label }}</a>
+                  </li>
+                }
+              </ul>
+            }
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="logout">
+      <button type="button" (click)="onLogout()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+          <polyline points="16 17 21 12 16 7" />
+          <line x1="21" y1="12" x2="9" y2="12" />
+        </svg>
+        Se déconnecter
+      </button>
+    </div>
+  </div>
+
+  <button type="button" class="toggle-btn" (click)="toggleSidebar()">
+    <lucide-icon [name]="isCollapsed ? 'chevron-right' : 'chevron-left'"></lucide-icon>
+  </button>
+</section>

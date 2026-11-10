@@ -1,0 +1,54 @@
+{
+  "reportsUsers": [
+    { "key": "username", "label": "Utilisateur signalé" },
+    { "key": "reporterUser", "label": "Signalé par" },
+    { "key": "reportedMessage", "label": "Message signalé" },
+    { "key": "reasons", "label": "Raisons" },
+    { "key": "reportedAt", "label": "Date de signalement" }
+  ],
+  "reportsTopics": [
+    { "key": "topicTitle", "label": "Titre du topic" },
+    { "key": "username", "label": "Pseudo de l'auteur" },
+    { "key": "reporterUser", "label": "Signalé par" },
+    { "key": "reportedMessage", "label": "Contenu du topic" },
+    { "key": "reasons", "label": "Raisons" },
+    { "key": "reportedAt", "label": "Date de signalement" }
+  ],
+  "usersList": [
+    { "key": "id", "label": "Id" },
+    { "key": "username", "label": "Pseudo" },
+    { "key": "status", "label": "Etat du compte" }
+  ],
+  "usersBanned": [
+    { "key": "id", "label": "Id" },
+    { "key": "username", "label": "Pseudo" },
+    { "key": "duration", "label": "Durée de banissement" },
+    { "key": "bannedAt", "label": "Dates de début du banissement" },
+    { "key": "bannedUntil", "label": "Date de fin du banissement" }
+  ],
+  "forumsList": [
+    { "key": "id", "label": "Id" },
+    { "key": "topicTitle", "label": "Titre du topic" },
+    { "key": "authorUsername", "label": "Pseudo de l'auteur" },
+    { "key": "status", "label": "Etat du topic" },
+    { "key": "createdAt", "label": "Date création du topic" }
+  ],
+  "forumsDeactivated": [
+    { "key": "id", "label": "Id" },
+    { "key": "topicTitle", "label": "Titre du topic" },
+    { "key": "authorUsername", "label": "Pseudo du créateur" }
+  ],
+  "contentResources": [
+    { "key": "id", "label": "Id" },
+    { "key": "image", "label": "Image", "type": "image" },
+    { "key": "title", "label": "Titre" },
+    { "key": "publishedAt", "label": "Date de mise en ligne" }
+  ],
+  "contentPodcasts": [
+    { "key": "id", "label": "Id" },
+    { "key": "image", "label": "Jaquette", "type": "image" },
+    { "key": "title", "label": "Titre" },
+    { "key": "duration", "label": "Durée" },
+    { "key": "publishedAt", "label": "Date de mise en ligne" }
+  ]
+}

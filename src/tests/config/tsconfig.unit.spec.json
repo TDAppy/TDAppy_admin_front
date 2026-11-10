@@ -1,0 +1,5 @@
+// src/tests/config/tsconfig.unit.spec.json
+{
+  "extends": "./tsconfig.base.json",
+  "include": ["../unit/**/*.spec.ts"]
+}

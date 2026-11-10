@@ -1,0 +1,7 @@
+@import '../../../../shared/styles/modal.shared.css';
+
+.modal-body p {
+  font-size: 14px;
+  color: #374151;
+  margin: 0;
+}

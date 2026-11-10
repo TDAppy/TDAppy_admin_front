@@ -1,0 +1,76 @@
+<div
+  class="modal-overlay"
+  role="button"
+  tabindex="0"
+  (click)="onOverlayClick($event)"
+  (keydown.escape)="closeModal.emit()"
+>
+  <div class="modal-panel">
+    <div class="modal-header">
+      <h2>Ajouter un podcast</h2>
+      <button type="button" class="btn-close" (click)="closeModal.emit()">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="field">
+        <label for="title">Titre *</label>
+        <input
+          id="title"
+          type="text"
+          [value]="title()"
+          (input)="title.set($any($event.target).value)"
+        />
+      </div>
+
+      <div class="field">
+        <label for="description">Description *</label>
+        <textarea
+          id="description"
+          rows="4"
+          [value]="description()"
+          (input)="description.set($any($event.target).value)"
+        ></textarea>
+      </div>
+
+      <div class="field">
+        <label for="duration">Durée (minutes)</label>
+        <input
+          id="duration"
+          type="number"
+          min="0"
+          [value]="durationMinutes()"
+          (input)="durationMinutes.set($any($event.target).value)"
+        />
+      </div>
+
+      <div class="field">
+        <label for="audio">Fichier audio *</label>
+        <input
+          id="audio"
+          type="file"
+          accept=".mp3,.wav,.m4a,.ogg"
+          (change)="onAudioSelected($event)"
+        />
+      </div>
+
+      <div class="field">
+        <label for="cover">Jaquette</label>
+        <input
+          id="cover"
+          type="file"
+          accept=".jpg,.jpeg,.png,.webp"
+          (change)="onCoverSelected($event)"
+        />
+      </div>
+
+      @if (error()) {
+        <p class="error-message">{{ error() }}</p>
+      }
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-cancel" (click)="closeModal.emit()">Annuler</button>
+      <button type="button" class="btn-confirm" (click)="submit()">Ajouter</button>
+    </div>
+  </div>
+</div>

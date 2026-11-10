@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 declare const monaco: any;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TemplateEditorService {
   private editor: any;
@@ -17,7 +17,7 @@ export class TemplateEditorService {
       theme: 'vs-dark',
       automaticLayout: true,
       minimap: {
-        enabled: true
+        enabled: true,
       },
       scrollBeyondLastLine: false,
       fontSize: 14,
@@ -26,23 +26,23 @@ export class TemplateEditorService {
       roundedSelection: false,
       scrollbar: {
         horizontal: 'visible',
-        vertical: 'visible'
+        vertical: 'visible',
       },
       overviewRulerLanes: 2,
       quickSuggestions: {
         other: true,
         comments: true,
-        strings: true
+        strings: true,
       },
       parameterHints: {
-        enabled: true
+        enabled: true,
       },
       autoClosingBrackets: 'always',
       autoClosingQuotes: 'always',
       suggestOnTriggerCharacters: true,
       acceptSuggestionOnEnter: 'on',
       tabCompletion: 'on',
-      wordBasedSuggestions: false
+      wordBasedSuggestions: false,
     });
 
     // Set up change listener
@@ -102,65 +102,71 @@ export class TemplateEditorService {
           [/(<)(\w+)/, ['delimiter', { token: 'tag', next: '@tag' }]],
           [/(<\/)(\w+)/, ['delimiter', { token: 'tag', next: '@tag' }]],
           [/</, 'delimiter'],
-          [/[^<]+/]
+          [/[^<]+/],
         ],
 
         handlebars_unescaped: [
           [/\}\}\}/, { token: 'keyword', next: '@pop' }],
-          [/[^}]+/, 'variable']
+          [/[^}]+/, 'variable'],
         ],
 
         handlebars: [
           [/\}\}/, { token: 'keyword', next: '@pop' }],
           [/#if|#unless|#each|#with|\/if|\/unless|\/each|\/with/, 'keyword'],
           [/[a-zA-Z_][\w]*/, 'variable'],
-          [/[^}]+/, 'variable']
+          [/[^}]+/, 'variable'],
         ],
 
         comment: [
           [/-->/, 'comment', '@pop'],
           [/[^-]+/, 'comment'],
-          [/./, 'comment']
+          [/./, 'comment'],
         ],
 
         doctype: [
           [/[^>]+/, 'metatag.content'],
-          [/>/, 'metatag', '@pop']
+          [/>/, 'metatag', '@pop'],
         ],
 
         tag: [
           [/[ \t\r\n]+/, 'white'],
-          [/(\w+)(\s*=\s*)("([^"]*)")/, ['attribute.name', 'delimiter', 'attribute.value', 'attribute.value']],
-          [/(\w+)(\s*=\s*)('([^']*)')/, ['attribute.name', 'delimiter', 'attribute.value', 'attribute.value']],
+          [
+            /(\w+)(\s*=\s*)("([^"]*)")/,
+            ['attribute.name', 'delimiter', 'attribute.value', 'attribute.value'],
+          ],
+          [
+            /(\w+)(\s*=\s*)('([^']*)')/,
+            ['attribute.name', 'delimiter', 'attribute.value', 'attribute.value'],
+          ],
           [/\w+/, 'attribute.name'],
-          [/>/, 'delimiter', '@pop']
-        ]
-      }
+          [/>/, 'delimiter', '@pop'],
+        ],
+      },
     });
 
     monaco.languages.setLanguageConfiguration('handlebars', {
       comments: {
-        blockComment: ['<!--', '-->']
+        blockComment: ['<!--', '-->'],
       },
       brackets: [
         ['<', '>'],
         ['{{', '}}'],
-        ['{{{', '}}}']
+        ['{{{', '}}}'],
       ],
       autoClosingPairs: [
         { open: '<', close: '>' },
         { open: '{{', close: '}}' },
         { open: '{{{', close: '}}}' },
         { open: '"', close: '"' },
-        { open: "'", close: "'" }
+        { open: "'", close: "'" },
       ],
       surroundingPairs: [
         { open: '<', close: '>' },
         { open: '{{', close: '}}' },
         { open: '{{{', close: '}}}' },
         { open: '"', close: '"' },
-        { open: "'", close: "'" }
-      ]
+        { open: "'", close: "'" },
+      ],
     });
   }
 

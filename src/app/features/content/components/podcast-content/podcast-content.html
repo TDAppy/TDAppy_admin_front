@@ -1,0 +1,35 @@
+<h1>Liste des podcasts</h1>
+<button type="button" class="btn-add" (click)="showAddModal.set(true)">+</button>
+
+<div class="admin-table-container">
+  <app-admin-table
+    [columns]="columns"
+    [data]="data()"
+    [actions]="actions"
+    (actionTrigerred)="onActionTriggered($event)"
+  />
+</div>
+
+@if (showAddModal()) {
+  <app-add-podcast-modal
+    (closeModal)="showAddModal.set(false)"
+    (confirm)="onPodcastConfirmed($event)"
+  />
+}
+
+@if (showUpdateModal() && selectedPodcast()) {
+  <app-update-podcast-modal
+    [podcast]="selectedPodcast()!"
+    (closeModal)="showUpdateModal.set(false)"
+    (confirm)="onUpdateConfirmed($event)"
+  />
+}
+
+@if (showDeleteModal() && selectedPodcast()) {
+  <app-confirm-delete-modal
+    title="Supprimer le podcast"
+    [description]="'Voulez-vous vraiment supprimer ' + selectedPodcast()!.title + ' ?'"
+    (closeModal)="showDeleteModal.set(false)"
+    (confirm)="onDeleteConfirmed()"
+  />
+}
